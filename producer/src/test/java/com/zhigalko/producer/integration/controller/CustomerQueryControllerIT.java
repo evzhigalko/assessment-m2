@@ -1,6 +1,7 @@
 package com.zhigalko.producer.integration.controller;
 
 import com.redis.testcontainers.RedisContainer;
+import com.zhigalko.core.annotation.IT;
 import com.zhigalko.core.domain.model.Customer;
 import com.zhigalko.core.projection.CustomerProjection;
 import com.zhigalko.core.query.GetCustomerById;
@@ -11,14 +12,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.testcontainers.containers.MongoDBContainer;
 import org.testcontainers.containers.Network;
 import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 import static com.zhigalko.producer.constants.CommonConstant.CACHE_KEY;
 import static com.zhigalko.producer.util.TestDataUtil.getCustomer;
@@ -28,9 +27,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
+@IT
 @AutoConfigureMockMvc
-@Testcontainers
 class CustomerQueryControllerIT {
 	public static final String GET_QUERY_URI = "/api/v1/customers/";
 	private static final Network NETWORK = Network.newNetwork();

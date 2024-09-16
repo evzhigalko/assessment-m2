@@ -1,6 +1,7 @@
 package com.zhigalko.producer.integration.listener;
 
 import com.redis.testcontainers.RedisContainer;
+import com.zhigalko.core.annotation.IT;
 import com.zhigalko.core.config.KafkaProducerConfig;
 import com.zhigalko.core.domain.model.Customer;
 import com.zhigalko.core.projection.CustomerProjection;
@@ -21,7 +22,6 @@ import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -37,7 +37,6 @@ import org.testcontainers.containers.MongoDBContainer;
 import org.testcontainers.containers.Network;
 import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 import static com.zhigalko.core.domain.EventType.DELETE_CUSTOMER_VIEW;
 import static com.zhigalko.core.domain.EventType.UPDATE_CUSTOMER_ADDRESS_VIEW;
@@ -49,8 +48,7 @@ import static com.zhigalko.producer.util.TestDataUtil.getCustomerViewAvroEvent;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.awaitility.Awaitility.await;
 
-@SpringBootTest
-@Testcontainers
+@IT
 @Import({KafkaConsumerIT.Config.class})
 public class KafkaConsumerIT {
 

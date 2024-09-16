@@ -1,23 +1,21 @@
 package com.zhigalko.consumer.integration.repository;
 
 import com.zhigalko.consumer.repository.SnapshotRepository;
+import com.zhigalko.core.annotation.IT;
 import com.zhigalko.core.domain.model.Snapshot;
 import java.util.Optional;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.MongoDBContainer;
 import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 import static com.zhigalko.consumer.util.TestDataUtil.getSnapshot;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
-@Testcontainers
+@IT
 class SnapshotRepositoryIT {
 
 	@Container

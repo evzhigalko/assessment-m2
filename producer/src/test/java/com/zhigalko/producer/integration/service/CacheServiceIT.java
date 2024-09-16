@@ -1,6 +1,7 @@
 package com.zhigalko.producer.integration.service;
 
 import com.redis.testcontainers.RedisContainer;
+import com.zhigalko.core.annotation.IT;
 import com.zhigalko.core.projection.CustomerProjection;
 import com.zhigalko.producer.config.RedisConfig;
 import com.zhigalko.producer.service.CacheService;
@@ -10,12 +11,10 @@ import java.util.Objects;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 import static com.zhigalko.core.util.Util.fromJsonToCustomerProjection;
 import static com.zhigalko.core.util.Util.toJson;
@@ -23,8 +22,7 @@ import static com.zhigalko.producer.constants.CommonConstant.CACHE_KEY;
 import static com.zhigalko.producer.util.TestDataUtil.getProjection;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
-@Testcontainers
+@IT
 public class CacheServiceIT {
 
 	@Container

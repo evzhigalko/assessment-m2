@@ -1,5 +1,6 @@
 package com.zhigalko.core.integration;
 
+import com.zhigalko.core.annotation.IT;
 import com.zhigalko.core.integration.config.KafkaTestConfig;
 import com.zhigalko.core.schema.CreateCustomerAvroEvent;
 import com.zhigalko.core.service.KafkaProducer;
@@ -13,7 +14,6 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.test.context.DynamicPropertyRegistry;
@@ -23,15 +23,13 @@ import org.testcontainers.containers.KafkaContainer;
 import org.testcontainers.containers.Network;
 import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 import static com.zhigalko.core.domain.EventType.CREATE_CUSTOMER;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.awaitility.Awaitility.await;
 
-@SpringBootTest
-@Testcontainers
+@IT
 @Import({KafkaTestConfig.class})
 public class KafkaProducerIT {
 	private static final Network NETWORK = Network.newNetwork();

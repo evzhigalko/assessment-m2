@@ -3,6 +3,7 @@ package com.zhigalko.consumer.integration.listener;
 import com.zhigalko.consumer.integration.config.KafkaTestConfig;
 import com.zhigalko.consumer.repository.EventRepository;
 import com.zhigalko.consumer.repository.SnapshotRepository;
+import com.zhigalko.core.annotation.IT;
 import com.zhigalko.core.domain.model.Snapshot;
 import com.zhigalko.core.event.CreateCustomerEvent;
 import com.zhigalko.core.event.DeleteCustomerEvent;
@@ -25,7 +26,6 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.test.context.DynamicPropertyRegistry;
@@ -36,7 +36,6 @@ import org.testcontainers.containers.MongoDBContainer;
 import org.testcontainers.containers.Network;
 import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 import static com.zhigalko.consumer.util.TestDataUtil.getCreateCustomerAvroEvent;
 import static com.zhigalko.consumer.util.TestDataUtil.getCreateCustomerEvent;
@@ -52,8 +51,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.awaitility.Awaitility.await;
 
-@SpringBootTest
-@Testcontainers
+@IT
 @Import({KafkaTestConfig.class})
 public class KafkaListenerIT {
 	private static final Network NETWORK = Network.newNetwork();

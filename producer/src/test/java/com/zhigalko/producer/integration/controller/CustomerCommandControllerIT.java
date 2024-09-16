@@ -1,5 +1,6 @@
 package com.zhigalko.producer.integration.controller;
 
+import com.zhigalko.core.annotation.IT;
 import com.zhigalko.core.config.KafkaProducerConfig;
 import com.zhigalko.core.schema.CreateCustomerAvroEvent;
 import com.zhigalko.core.schema.DeleteCustomerAvroEvent;
@@ -22,7 +23,6 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
@@ -39,7 +39,6 @@ import org.testcontainers.containers.MongoDBContainer;
 import org.testcontainers.containers.Network;
 import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 import static com.zhigalko.core.domain.EventType.CREATE_CUSTOMER;
 import static com.zhigalko.core.domain.EventType.DELETE_CUSTOMER;
@@ -60,9 +59,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
+@IT
 @AutoConfigureMockMvc
-@Testcontainers
 @Import({CustomerCommandControllerIT.Config.class})
 class CustomerCommandControllerIT {
 	public static final String BASE_URI = "/api/v1/customers";
