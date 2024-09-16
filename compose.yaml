@@ -1,0 +1,124 @@
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+    networks:
+      - kafka-network
+    volumes:
+      - zookeeper-data:/var/lib/zookeeper/data:Z
+
+  schema-registry:
+    image: confluentinc/cp-schema-registry:latest
+    hostname: schema-registry
+    container_name: schema-registry
+    restart: always
+    depends_on:
+      - kafka1
+      - kafka2
+    ports:
+      - "8081:8081"
+    environment:
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: 'zookeeper:2181'
+      SCHEMA_REGISTRY_LISTENERS: http://schema-registry:8081
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: PLAINTEXT://kafka2:9092,PLAINTEXT_INTERNAL://localhost:29092
+    networks:
+      - kafka-network
+    volumes:
+      - schema-registry-data:/var/lib/schema-registry/data:Z
+
+  kafka1:
+    image: confluentinc/cp-kafka:latest
+    hostname: kafka1
+    container_name: kafka1
+    ports:
+      - "19092:19092"
+    depends_on:
+      - zookeeper
+    restart: always
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka1:9092,PLAINTEXT_INTERNAL://localhost:19092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 2
+    networks:
+      - kafka-network
+    volumes:
+      - kafka1-data:/var/lib/kafka1/data:Z
+  kafka2:
+    image: confluentinc/cp-kafka:latest
+    hostname: kafka2
+    container_name: kafka2
+    restart: always
+    ports:
+      - "29092:29092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 2
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka2:9092,PLAINTEXT_INTERNAL://localhost:29092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 2
+    networks:
+      - kafka-network
+    volumes:
+      - kafka2-data:/var/lib/kafka2/data:Z
+
+  kafka-ui:
+    container_name: kafka-ui
+    image: provectuslabs/kafka-ui:latest
+    ports:
+      - 8082:8080
+    depends_on:
+      - kafka1
+      - kafka2
+      - zookeeper
+      - schema-registry
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=kafka-cluster
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka1:9092,kafka2:9092
+      - KAFKA_CLUSTERS_0_ZOOKEEPER=http://zookeeper:2181
+      - KAFKA_CLUSTERS_0_SCHEMAREGISTRY=http://schema-registry:8081
+    networks:
+      - kafka-network
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    hostname: mongodb
+    env_file:
+      - compose.env
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/var/lib/mongodb/data
+    networks:
+      - kafka-network
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    hostname: redis
+    ports:
+      - 6379:6379
+    networks:
+      - kafka-network
+    volumes:
+      - redis-data:/var/lib/redis/data
+
+networks:
+  kafka-network:
+    driver: bridge
+volumes:
+  zookeeper-data:
+  kafka1-data:
+  kafka2-data:
+  schema-registry-data:
+  mongo-data:
+  redis-data:

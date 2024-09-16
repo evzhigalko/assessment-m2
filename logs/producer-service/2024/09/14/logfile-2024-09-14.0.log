@@ -1,0 +1,815 @@
+2024-09-14 13:34:46 [background-preinit] [34mINFO [0;39m o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-09-14 13:34:46 [main] [34mINFO [0;39m c.z.producer.ProducerApplication - Starting ProducerApplication using Java 17.0.8 with PID 44952 (/home/anduser/dev/assessment/assessment-m2/producer/target/classes started by anduser in /home/anduser/dev/assessment/assessment-m2)
+2024-09-14 13:34:46 [main] [34mINFO [0;39m c.z.producer.ProducerApplication - No active profile set, falling back to 1 default profile: "default"
+2024-09-14 13:34:46 [main] [34mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-09-14 13:34:46 [main] [34mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-09-14 13:34:46 [main] [34mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 76 ms. Found 1 MongoDB repository interface.
+2024-09-14 13:34:46 [main] [34mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-09-14 13:34:46 [main] [34mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-09-14 13:34:46 [main] [34mINFO [0;39m o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.zhigalko.producer.repository.CustomerRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-14 13:34:46 [main] [34mINFO [0;39m o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 5 ms. Found 0 Redis repository interfaces.
+2024-09-14 13:34:47 [main] [34mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 9001 (http)
+2024-09-14 13:34:47 [main] [34mINFO [0;39m o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-9001"]
+2024-09-14 13:34:47 [main] [34mINFO [0;39m o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-09-14 13:34:47 [main] [34mINFO [0;39m o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-09-14 13:34:47 [main] [34mINFO [0;39m o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-09-14 13:34:47 [main] [34mINFO [0;39m o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 841 ms
+2024-09-14 13:34:47 [main] [34mINFO [0;39m org.mongodb.driver.client - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "5.0.1"}, "os": {"type": "Linux", "name": "Linux", "architecture": "amd64", "version": "6.8.0-40-generic"}, "platform": "Java/Amazon.com Inc./17.0.8+7-LTS"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=MongoCredential{mechanism=null, userName='admin', source='admin', password=<hidden>, mechanismProperties=<hidden>}, transportSettings=null, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@423f8a73, com.mongodb.Jep395RecordCodecProvider@1aedf08d, com.mongodb.KotlinCodecProvider@113dcaf8]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+2024-09-14 13:34:47 [cluster-ClusterId{value='66e558b72be2e8469094c467', description='null'}-localhost:27017] [34mINFO [0;39m org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=16231072}
+2024-09-14 13:34:47 [main] [34mINFO [0;39m o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-9001"]
+2024-09-14 13:34:47 [main] [34mINFO [0;39m o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 9001 (http) with context path '/'
+2024-09-14 13:34:47 [main] [34mINFO [0;39m o.a.k.c.consumer.ConsumerConfig - ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = earliest
+	bootstrap.servers = [http://localhost:19092, http://localhost:29092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-customerViewConsumer-1
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = customerViewConsumer
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+
+2024-09-14 13:34:48 [main] [34mINFO [0;39m o.a.k.c.t.i.KafkaMetricsCollector - initializing Kafka metrics collector
+2024-09-14 13:34:48 [main] [34mINFO [0;39m i.c.k.s.KafkaAvroDeserializerConfig - KafkaAvroDeserializerConfig values: 
+	auto.register.schemas = true
+	avro.reflection.allow.null = false
+	avro.use.logical.type.converters = false
+	basic.auth.credentials.source = URL
+	basic.auth.user.info = [hidden]
+	bearer.auth.cache.expiry.buffer.seconds = 300
+	bearer.auth.client.id = null
+	bearer.auth.client.secret = null
+	bearer.auth.credentials.source = STATIC_TOKEN
+	bearer.auth.custom.provider.class = null
+	bearer.auth.identity.pool.id = null
+	bearer.auth.issuer.endpoint.url = null
+	bearer.auth.logical.cluster = null
+	bearer.auth.scope = null
+	bearer.auth.scope.claim.name = scope
+	bearer.auth.sub.claim.name = sub
+	bearer.auth.token = [hidden]
+	context.name.strategy = class io.confluent.kafka.serializers.context.NullContextNameStrategy
+	http.connect.timeout.ms = 60000
+	http.read.timeout.ms = 60000
+	id.compatibility.strict = true
+	key.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+	latest.cache.size = 1000
+	latest.cache.ttl.sec = -1
+	latest.compatibility.strict = true
+	max.schemas.per.subject = 1000
+	normalize.schemas = false
+	proxy.host = 
+	proxy.port = -1
+	rule.actions = []
+	rule.executors = []
+	rule.service.loader.enable = true
+	schema.format = null
+	schema.reflection = false
+	schema.registry.basic.auth.user.info = [hidden]
+	schema.registry.ssl.cipher.suites = null
+	schema.registry.ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	schema.registry.ssl.endpoint.identification.algorithm = https
+	schema.registry.ssl.engine.factory.class = null
+	schema.registry.ssl.key.password = null
+	schema.registry.ssl.keymanager.algorithm = SunX509
+	schema.registry.ssl.keystore.certificate.chain = null
+	schema.registry.ssl.keystore.key = null
+	schema.registry.ssl.keystore.location = null
+	schema.registry.ssl.keystore.password = null
+	schema.registry.ssl.keystore.type = JKS
+	schema.registry.ssl.protocol = TLSv1.3
+	schema.registry.ssl.provider = null
+	schema.registry.ssl.secure.random.implementation = null
+	schema.registry.ssl.trustmanager.algorithm = PKIX
+	schema.registry.ssl.truststore.certificates = null
+	schema.registry.ssl.truststore.location = null
+	schema.registry.ssl.truststore.password = null
+	schema.registry.ssl.truststore.type = JKS
+	schema.registry.url = [http://localhost:8081]
+	specific.avro.key.type = null
+	specific.avro.reader = true
+	specific.avro.value.type = null
+	use.latest.version = false
+	use.latest.with.metadata = null
+	use.schema.id = -1
+	value.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+
+2024-09-14 13:34:48 [main] [34mINFO [0;39m i.c.k.s.KafkaAvroDeserializerConfig - KafkaAvroDeserializerConfig values: 
+	auto.register.schemas = true
+	avro.reflection.allow.null = false
+	avro.use.logical.type.converters = false
+	basic.auth.credentials.source = URL
+	basic.auth.user.info = [hidden]
+	bearer.auth.cache.expiry.buffer.seconds = 300
+	bearer.auth.client.id = null
+	bearer.auth.client.secret = null
+	bearer.auth.credentials.source = STATIC_TOKEN
+	bearer.auth.custom.provider.class = null
+	bearer.auth.identity.pool.id = null
+	bearer.auth.issuer.endpoint.url = null
+	bearer.auth.logical.cluster = null
+	bearer.auth.scope = null
+	bearer.auth.scope.claim.name = scope
+	bearer.auth.sub.claim.name = sub
+	bearer.auth.token = [hidden]
+	context.name.strategy = class io.confluent.kafka.serializers.context.NullContextNameStrategy
+	http.connect.timeout.ms = 60000
+	http.read.timeout.ms = 60000
+	id.compatibility.strict = true
+	key.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+	latest.cache.size = 1000
+	latest.cache.ttl.sec = -1
+	latest.compatibility.strict = true
+	max.schemas.per.subject = 1000
+	normalize.schemas = false
+	proxy.host = 
+	proxy.port = -1
+	rule.actions = []
+	rule.executors = []
+	rule.service.loader.enable = true
+	schema.format = null
+	schema.reflection = false
+	schema.registry.basic.auth.user.info = [hidden]
+	schema.registry.ssl.cipher.suites = null
+	schema.registry.ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	schema.registry.ssl.endpoint.identification.algorithm = https
+	schema.registry.ssl.engine.factory.class = null
+	schema.registry.ssl.key.password = null
+	schema.registry.ssl.keymanager.algorithm = SunX509
+	schema.registry.ssl.keystore.certificate.chain = null
+	schema.registry.ssl.keystore.key = null
+	schema.registry.ssl.keystore.location = null
+	schema.registry.ssl.keystore.password = null
+	schema.registry.ssl.keystore.type = JKS
+	schema.registry.ssl.protocol = TLSv1.3
+	schema.registry.ssl.provider = null
+	schema.registry.ssl.secure.random.implementation = null
+	schema.registry.ssl.trustmanager.algorithm = PKIX
+	schema.registry.ssl.truststore.certificates = null
+	schema.registry.ssl.truststore.location = null
+	schema.registry.ssl.truststore.password = null
+	schema.registry.ssl.truststore.type = JKS
+	schema.registry.url = [http://localhost:8081]
+	specific.avro.key.type = null
+	specific.avro.reader = true
+	specific.avro.value.type = null
+	use.latest.version = false
+	use.latest.with.metadata = null
+	use.schema.id = -1
+	value.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+
+2024-09-14 13:34:48 [main] [34mINFO [0;39m o.a.k.c.consumer.ConsumerConfig - These configurations '[schema.registry.url, specific.avro.reader]' were supplied but are not used yet.
+2024-09-14 13:34:48 [main] [34mINFO [0;39m o.a.kafka.common.utils.AppInfoParser - Kafka version: 3.7.1
+2024-09-14 13:34:48 [main] [34mINFO [0;39m o.a.kafka.common.utils.AppInfoParser - Kafka commitId: e2494e6ffb89f828
+2024-09-14 13:34:48 [main] [34mINFO [0;39m o.a.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1726306488125
+2024-09-14 13:34:48 [main] [34mINFO [0;39m o.a.k.c.c.i.LegacyKafkaConsumer - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Subscribed to topic(s): CustomerViewEventTopic
+2024-09-14 13:34:48 [main] [34mINFO [0;39m c.z.producer.ProducerApplication - Started ProducerApplication in 2.018 seconds (process running for 2.576)
+2024-09-14 13:34:48 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Cluster ID: FqcP9J1MQ5a2psFQkE3dfA
+2024-09-14 13:34:48 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Discovered group coordinator localhost:19092 (id: 2147483646 rack: null)
+2024-09-14 13:34:48 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] (Re-)joining group
+2024-09-14 13:34:48 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Request joining group due to: need to re-join with the given member-id: consumer-customerViewConsumer-1-e3c3ff40-2f7e-4b18-b221-8abf7975ac19
+2024-09-14 13:34:48 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] (Re-)joining group
+2024-09-14 13:34:51 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Successfully joined group with generation Generation{generationId=106, memberId='consumer-customerViewConsumer-1-e3c3ff40-2f7e-4b18-b221-8abf7975ac19', protocol='range'}
+2024-09-14 13:34:51 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Finished assignment for group at generation 106: {consumer-customerViewConsumer-1-e3c3ff40-2f7e-4b18-b221-8abf7975ac19=Assignment(partitions=[CustomerViewEventTopic-0, CustomerViewEventTopic-1])}
+2024-09-14 13:34:51 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Successfully synced group in generation Generation{generationId=106, memberId='consumer-customerViewConsumer-1-e3c3ff40-2f7e-4b18-b221-8abf7975ac19', protocol='range'}
+2024-09-14 13:34:51 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Notifying assignor about the new Assignment(partitions=[CustomerViewEventTopic-0, CustomerViewEventTopic-1])
+2024-09-14 13:34:51 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerRebalanceListenerInvoker - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Adding newly assigned partitions: CustomerViewEventTopic-0, CustomerViewEventTopic-1
+2024-09-14 13:34:51 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.internals.ConsumerUtils - Setting offset for partition CustomerViewEventTopic-0 to the committed offset FetchPosition{offset=37, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:19092 (id: 1 rack: null)], epoch=2}}
+2024-09-14 13:34:51 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.internals.ConsumerUtils - Setting offset for partition CustomerViewEventTopic-1 to the committed offset FetchPosition{offset=20, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:29092 (id: 2 rack: null)], epoch=12}}
+2024-09-14 13:34:51 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.s.k.l.KafkaMessageListenerContainer - customerViewConsumer: partitions assigned: [CustomerViewEventTopic-0, CustomerViewEventTopic-1]
+2024-09-14 13:34:52 [http-nio-9001-exec-2] [34mINFO [0;39m o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-14 13:34:52 [http-nio-9001-exec-2] [34mINFO [0;39m o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-09-14 13:34:52 [http-nio-9001-exec-2] [34mINFO [0;39m o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-09-14 13:34:52 [http-nio-9001-exec-2] [34mINFO [0;39m c.z.p.s.impl.CustomerServiceImpl - Received command: com.zhigalko.producer.command.CreateCustomerCommand@640e8ee5
+2024-09-14 13:34:52 [http-nio-9001-exec-2] [34mINFO [0;39m c.z.p.h.i.CreateCustomerCommandHandler - Avro event created with event type - CreateCustomerEvent
+2024-09-14 13:34:52 [http-nio-9001-exec-2] [34mINFO [0;39m o.a.k.c.producer.ProducerConfig - ProducerConfig values: 
+	acks = -1
+	auto.include.jmx.reporter = true
+	batch.size = 16384
+	bootstrap.servers = [http://localhost:19092, http://localhost:29092]
+	buffer.memory = 33554432
+	client.dns.lookup = use_all_dns_ips
+	client.id = producer-service-producer-1
+	compression.type = none
+	connections.max.idle.ms = 540000
+	delivery.timeout.ms = 120000
+	enable.idempotence = true
+	enable.metrics.push = true
+	interceptor.classes = []
+	key.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	linger.ms = 0
+	max.block.ms = 60000
+	max.in.flight.requests.per.connection = 5
+	max.request.size = 1048576
+	metadata.max.age.ms = 300000
+	metadata.max.idle.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partitioner.adaptive.partitioning.enable = true
+	partitioner.availability.timeout.ms = 0
+	partitioner.class = null
+	partitioner.ignore.keys = false
+	receive.buffer.bytes = 32768
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retries = 2147483647
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	transaction.timeout.ms = 60000
+	transactional.id = null
+	value.serializer = class io.confluent.kafka.serializers.KafkaAvroSerializer
+
+2024-09-14 13:34:52 [http-nio-9001-exec-2] [34mINFO [0;39m o.a.k.c.t.i.KafkaMetricsCollector - initializing Kafka metrics collector
+2024-09-14 13:34:52 [http-nio-9001-exec-2] [34mINFO [0;39m i.c.k.s.KafkaAvroSerializerConfig - KafkaAvroSerializerConfig values: 
+	auto.register.schemas = true
+	avro.reflection.allow.null = false
+	avro.remove.java.properties = false
+	avro.use.logical.type.converters = false
+	basic.auth.credentials.source = URL
+	basic.auth.user.info = [hidden]
+	bearer.auth.cache.expiry.buffer.seconds = 300
+	bearer.auth.client.id = null
+	bearer.auth.client.secret = null
+	bearer.auth.credentials.source = STATIC_TOKEN
+	bearer.auth.custom.provider.class = null
+	bearer.auth.identity.pool.id = null
+	bearer.auth.issuer.endpoint.url = null
+	bearer.auth.logical.cluster = null
+	bearer.auth.scope = null
+	bearer.auth.scope.claim.name = scope
+	bearer.auth.sub.claim.name = sub
+	bearer.auth.token = [hidden]
+	context.name.strategy = class io.confluent.kafka.serializers.context.NullContextNameStrategy
+	http.connect.timeout.ms = 60000
+	http.read.timeout.ms = 60000
+	id.compatibility.strict = true
+	key.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+	latest.cache.size = 1000
+	latest.cache.ttl.sec = -1
+	latest.compatibility.strict = true
+	max.schemas.per.subject = 1000
+	normalize.schemas = false
+	proxy.host = 
+	proxy.port = -1
+	rule.actions = []
+	rule.executors = []
+	rule.service.loader.enable = true
+	schema.format = null
+	schema.reflection = false
+	schema.registry.basic.auth.user.info = [hidden]
+	schema.registry.ssl.cipher.suites = null
+	schema.registry.ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	schema.registry.ssl.endpoint.identification.algorithm = https
+	schema.registry.ssl.engine.factory.class = null
+	schema.registry.ssl.key.password = null
+	schema.registry.ssl.keymanager.algorithm = SunX509
+	schema.registry.ssl.keystore.certificate.chain = null
+	schema.registry.ssl.keystore.key = null
+	schema.registry.ssl.keystore.location = null
+	schema.registry.ssl.keystore.password = null
+	schema.registry.ssl.keystore.type = JKS
+	schema.registry.ssl.protocol = TLSv1.3
+	schema.registry.ssl.provider = null
+	schema.registry.ssl.secure.random.implementation = null
+	schema.registry.ssl.trustmanager.algorithm = PKIX
+	schema.registry.ssl.truststore.certificates = null
+	schema.registry.ssl.truststore.location = null
+	schema.registry.ssl.truststore.password = null
+	schema.registry.ssl.truststore.type = JKS
+	schema.registry.url = [http://127.0.0.1:8081]
+	use.latest.version = false
+	use.latest.with.metadata = null
+	use.schema.id = -1
+	value.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+
+2024-09-14 13:34:52 [http-nio-9001-exec-2] [34mINFO [0;39m o.a.k.clients.producer.KafkaProducer - [Producer clientId=producer-service-producer-1] Instantiated an idempotent producer.
+2024-09-14 13:34:52 [http-nio-9001-exec-2] [34mINFO [0;39m o.a.k.c.producer.ProducerConfig - These configurations '[schema.registry.url]' were supplied but are not used yet.
+2024-09-14 13:34:52 [http-nio-9001-exec-2] [34mINFO [0;39m o.a.kafka.common.utils.AppInfoParser - Kafka version: 3.7.1
+2024-09-14 13:34:52 [http-nio-9001-exec-2] [34mINFO [0;39m o.a.kafka.common.utils.AppInfoParser - Kafka commitId: e2494e6ffb89f828
+2024-09-14 13:34:52 [http-nio-9001-exec-2] [34mINFO [0;39m o.a.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1726306492824
+2024-09-14 13:34:52 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m org.apache.kafka.clients.Metadata - [Producer clientId=producer-service-producer-1] Cluster ID: FqcP9J1MQ5a2psFQkE3dfA
+2024-09-14 13:34:52 [http-nio-9001-exec-2] [1;31mERROR[0;39m c.z.p.c.GlobalExceptionHandler - Internal Server Error: 
+org.apache.kafka.common.errors.SerializationException: Error serializing Avro message
+	at io.confluent.kafka.serializers.AbstractKafkaAvroSerializer.serializeImpl(AbstractKafkaAvroSerializer.java:174)
+	at io.confluent.kafka.serializers.KafkaAvroSerializer.serialize(KafkaAvroSerializer.java:68)
+	at org.apache.kafka.clients.producer.KafkaProducer.doSend(KafkaProducer.java:1017)
+	at org.apache.kafka.clients.producer.KafkaProducer.send(KafkaProducer.java:964)
+	at org.springframework.kafka.core.DefaultKafkaProducerFactory$CloseSafeProducer.send(DefaultKafkaProducerFactory.java:1103)
+	at org.springframework.kafka.core.KafkaTemplate.doSend(KafkaTemplate.java:825)
+	at org.springframework.kafka.core.KafkaTemplate.observeSend(KafkaTemplate.java:793)
+	at org.springframework.kafka.core.KafkaTemplate.send(KafkaTemplate.java:596)
+	at com.zhigalko.core.service.KafkaProducer.sendMessage(KafkaProducer.java:20)
+	at com.zhigalko.producer.handler.impl.CreateCustomerCommandHandler.handle(CreateCustomerCommandHandler.java:31)
+	at com.zhigalko.producer.handler.impl.CreateCustomerCommandHandler.handle(CreateCustomerCommandHandler.java:15)
+	at com.zhigalko.producer.handler.CommandHandlerDispatcher.dispatch(CommandHandlerDispatcher.java:20)
+	at com.zhigalko.producer.service.impl.CustomerServiceImpl.createCustomer(CustomerServiceImpl.java:27)
+	at com.zhigalko.producer.controller.CustomerCommandController.createCustomer(CustomerCommandController.java:26)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:328)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:355)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:808)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:966)
+	at java.base/java.io.BufferedInputStream.fill(BufferedInputStream.java:244)
+	at java.base/java.io.BufferedInputStream.read1(BufferedInputStream.java:284)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:343)
+	at java.base/sun.net.www.http.HttpClient.parseHTTPHeader(HttpClient.java:826)
+	at java.base/sun.net.www.http.HttpClient.parseHTTP(HttpClient.java:761)
+	at java.base/sun.net.www.http.HttpClient.parseHTTP(HttpClient.java:785)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1688)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1589)
+	at java.base/java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:529)
+	at io.confluent.kafka.schemaregistry.client.rest.RestService.sendHttpRequest(RestService.java:317)
+	at io.confluent.kafka.schemaregistry.client.rest.RestService.httpRequest(RestService.java:413)
+	at io.confluent.kafka.schemaregistry.client.rest.RestService.registerSchema(RestService.java:593)
+	at io.confluent.kafka.schemaregistry.client.rest.RestService.registerSchema(RestService.java:581)
+	at io.confluent.kafka.schemaregistry.client.CachedSchemaRegistryClient.registerAndGetId(CachedSchemaRegistryClient.java:312)
+	at io.confluent.kafka.schemaregistry.client.CachedSchemaRegistryClient.registerWithResponse(CachedSchemaRegistryClient.java:428)
+	at io.confluent.kafka.schemaregistry.client.CachedSchemaRegistryClient.registerWithResponse(CachedSchemaRegistryClient.java:405)
+	at io.confluent.kafka.serializers.AbstractKafkaSchemaSerDe.registerWithResponse(AbstractKafkaSchemaSerDe.java:542)
+	at io.confluent.kafka.serializers.AbstractKafkaAvroSerializer.serializeImpl(AbstractKafkaAvroSerializer.java:118)
+	... 63 common frames omitted
+2024-09-14 13:34:53 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.a.k.c.p.i.TransactionManager - [Producer clientId=producer-service-producer-1] ProducerId set to 14000 with epoch 0
+2024-09-14 13:35:27 [http-nio-9001-exec-4] [34mINFO [0;39m c.z.p.s.impl.CustomerServiceImpl - Received command: com.zhigalko.producer.command.CreateCustomerCommand@5beffb03
+2024-09-14 13:35:27 [http-nio-9001-exec-4] [34mINFO [0;39m c.z.p.h.i.CreateCustomerCommandHandler - Avro event created with event type - CreateCustomerEvent
+2024-09-14 13:35:28 [http-nio-9001-exec-4] [34mINFO [0;39m c.z.core.service.KafkaProducer - Sending kafka message on topic CreateCustomerEventTopic
+2024-09-14 13:35:28 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m c.z.core.service.KafkaProducer - Kafka message successfully sent on topic CreateCustomerEventTopic and value {"id": "ccfeb743-5e66-46a8-bcd1-1baa3eafa5ab", "name": "Anna", "address": "New York", "timestamp": "2024-09-14T09:35:27.960980651Z", "eventType": "CreateCustomerEvent"}
+2024-09-14 13:35:28 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m c.z.producer.listener.KafkaConsumer - Received event: ConsumerRecord(topic = CustomerViewEventTopic, partition = 1, leaderEpoch = 12, offset = 20, CreateTime = 1726306528580, serialized key size = -1, serialized value size = 113, headers = RecordHeaders(headers = [], isReadOnly = false), key = null, value = {"id": "dc91055d-8a80-4ee1-8736-c925a890cc6f", "name": "Anna", "address": "New York", "timestamp": "2024-09-14T09:35:28.559429669Z", "eventType": "CreateCustomerViewEvent", "aggregateId": 1, "version": 1})
+2024-09-14 13:35:28 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m c.z.p.projector.CustomerProjector - Updated customer projection for: 1
+2024-09-14 13:35:28 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m c.z.p.s.i.CustomerQueryServiceImpl - Customer projection was stored: id - 1, name - Anna
+2024-09-14 13:35:28 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m c.z.p.s.i.CustomerQueryServiceImpl - Saved in cached value: CustomerProjection[id=1, name=Anna, address=New York]
+2024-09-14 13:36:17 [cluster-ClusterId{value='66e558b72be2e8469094c467', description='null'}-localhost:27017] [34mINFO [0;39m org.mongodb.driver.cluster - Exception in monitor thread while connecting to server localhost:27017
+com.mongodb.MongoNodeIsRecoveringException: Command failed with error 11600 (InterruptedAtShutdown): 'interrupted at shutdown' on server localhost:27017. The full response is {"ok": 0.0, "errmsg": "interrupted at shutdown", "code": 11600, "codeName": "InterruptedAtShutdown"}
+	at com.mongodb.internal.connection.ProtocolHelper.createSpecialException(ProtocolHelper.java:251)
+	at com.mongodb.internal.connection.ProtocolHelper.getCommandFailureException(ProtocolHelper.java:201)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveCommandMessageResponse(InternalStreamConnection.java:431)
+	at com.mongodb.internal.connection.InternalStreamConnection.receive(InternalStreamConnection.java:381)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:221)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:153)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2024-09-14 13:36:18 [lettuce-eventExecutorLoop-1-1] [34mINFO [0;39m i.l.core.protocol.ConnectionWatchdog - Reconnecting, last destination was localhost/127.0.0.1:6379
+2024-09-14 13:36:18 [lettuce-nioEventLoop-6-2] [31mWARN [0;39m i.l.core.protocol.ConnectionWatchdog - Cannot reconnect to [localhost/<unresolved>:6379]: Connection refused: localhost/127.0.0.1:6379
+2024-09-14 13:36:21 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Node -1 disconnected.
+2024-09-14 13:36:21 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 1 disconnected.
+2024-09-14 13:36:21 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Cancelled in-flight FETCH request with correlation id 397 due to node 1 being disconnected (elapsed time since creation: 442ms, elapsed time since send: 442ms, request timeout: 30000ms)
+2024-09-14 13:36:21 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 2147483646 disconnected.
+2024-09-14 13:36:21 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.clients.FetchSessionHandler - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Error sending fetch request (sessionId=1331702049, epoch=177) to node 1:
+org.apache.kafka.common.errors.DisconnectException: null
+2024-09-14 13:36:21 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Node 1 disconnected.
+2024-09-14 13:36:21 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Cancelled in-flight METADATA request with correlation id 9 due to node 1 being disconnected (elapsed time since creation: 0ms, elapsed time since send: 0ms, request timeout: 30000ms)
+2024-09-14 13:36:21 [kafka-coordinator-heartbeat-thread | customerViewConsumer] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node -1 disconnected.
+2024-09-14 13:36:21 [kafka-coordinator-heartbeat-thread | customerViewConsumer] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Group coordinator localhost:19092 (id: 2147483646 rack: null) is unavailable or invalid due to cause: coordinator unavailable. isDisconnected: true. Rediscovery will be attempted.
+2024-09-14 13:36:21 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Discovered group coordinator localhost:29092 (id: 2147483645 rack: null)
+2024-09-14 13:36:21 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 1 disconnected.
+2024-09-14 13:36:21 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Cancelled in-flight API_VERSIONS request with correlation id 405 due to node 1 being disconnected (elapsed time since creation: 0ms, elapsed time since send: 0ms, request timeout: 30000ms)
+2024-09-14 13:36:21 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.clients.FetchSessionHandler - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Error sending fetch request (sessionId=1331702049, epoch=INITIAL) to node 1:
+org.apache.kafka.common.errors.DisconnectException: null
+2024-09-14 13:36:21 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 1 disconnected.
+2024-09-14 13:36:21 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Cancelled in-flight API_VERSIONS request with correlation id 408 due to node 1 being disconnected (elapsed time since creation: 0ms, elapsed time since send: 0ms, request timeout: 30000ms)
+2024-09-14 13:36:21 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.clients.FetchSessionHandler - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Error sending fetch request (sessionId=1331702049, epoch=INITIAL) to node 1:
+org.apache.kafka.common.errors.DisconnectException: null
+2024-09-14 13:36:21 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 1 disconnected.
+2024-09-14 13:36:21 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Cancelled in-flight API_VERSIONS request with correlation id 411 due to node 1 being disconnected (elapsed time since creation: 1ms, elapsed time since send: 1ms, request timeout: 30000ms)
+2024-09-14 13:36:21 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.clients.FetchSessionHandler - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Error sending fetch request (sessionId=1331702049, epoch=INITIAL) to node 1:
+org.apache.kafka.common.errors.DisconnectException: null
+2024-09-14 13:36:22 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 1 disconnected.
+2024-09-14 13:36:22 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [31mWARN [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Connection to node 1 (localhost/127.0.0.1:19092) could not be established. Node may not be available.
+2024-09-14 13:36:22 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.clients.FetchSessionHandler - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Error sending fetch request (sessionId=1331702049, epoch=INITIAL) to node 1:
+org.apache.kafka.common.errors.DisconnectException: null
+2024-09-14 13:36:23 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 1 disconnected.
+2024-09-14 13:36:23 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [31mWARN [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Connection to node 1 (localhost/127.0.0.1:19092) could not be established. Node may not be available.
+2024-09-14 13:36:23 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.clients.FetchSessionHandler - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Error sending fetch request (sessionId=1331702049, epoch=INITIAL) to node 1:
+org.apache.kafka.common.errors.DisconnectException: null
+2024-09-14 13:36:24 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 1 disconnected.
+2024-09-14 13:36:24 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [31mWARN [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Connection to node 1 (localhost/127.0.0.1:19092) could not be established. Node may not be available.
+2024-09-14 13:36:24 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.clients.FetchSessionHandler - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Error sending fetch request (sessionId=1331702049, epoch=INITIAL) to node 1:
+org.apache.kafka.common.errors.DisconnectException: null
+2024-09-14 13:36:25 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 1 disconnected.
+2024-09-14 13:36:25 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [31mWARN [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Connection to node 1 (localhost/127.0.0.1:19092) could not be established. Node may not be available.
+2024-09-14 13:36:25 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.clients.FetchSessionHandler - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Error sending fetch request (sessionId=1331702049, epoch=INITIAL) to node 1:
+org.apache.kafka.common.errors.DisconnectException: null
+2024-09-14 13:36:26 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 1 disconnected.
+2024-09-14 13:36:26 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [31mWARN [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Connection to node 1 (localhost/127.0.0.1:19092) could not be established. Node may not be available.
+2024-09-14 13:36:26 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.clients.FetchSessionHandler - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Error sending fetch request (sessionId=1331702049, epoch=INITIAL) to node 1:
+org.apache.kafka.common.errors.DisconnectException: null
+2024-09-14 13:36:27 [lettuce-eventExecutorLoop-1-13] [34mINFO [0;39m i.l.core.protocol.ConnectionWatchdog - Reconnecting, last destination was localhost/<unresolved>:6379
+2024-09-14 13:36:27 [lettuce-nioEventLoop-6-14] [31mWARN [0;39m i.l.core.protocol.ConnectionWatchdog - Cannot reconnect to [localhost/<unresolved>:6379]: Connection refused: localhost/127.0.0.1:6379
+2024-09-14 13:36:27 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 1 disconnected.
+2024-09-14 13:36:27 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [31mWARN [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Connection to node 1 (localhost/127.0.0.1:19092) could not be established. Node may not be available.
+2024-09-14 13:36:27 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.clients.FetchSessionHandler - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Error sending fetch request (sessionId=1331702049, epoch=INITIAL) to node 1:
+org.apache.kafka.common.errors.DisconnectException: null
+2024-09-14 13:36:27 [cluster-ClusterId{value='66e558b72be2e8469094c467', description='null'}-localhost:27017] [34mINFO [0;39m org.mongodb.driver.cluster - Exception in monitor thread while connecting to server localhost:27017
+com.mongodb.MongoSocketOpenException: Exception opening socket
+	at com.mongodb.internal.connection.SocketStream.lambda$open$0(SocketStream.java:86)
+	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:86)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:201)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:193)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:153)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: java.net.ConnectException: Connection refused
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:547)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:602)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+	at java.base/java.net.Socket.connect(Socket.java:633)
+	at com.mongodb.internal.connection.SocketStreamHelper.initialize(SocketStreamHelper.java:76)
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:105)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:80)
+	... 4 common frames omitted
+2024-09-14 13:36:28 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 1 disconnected.
+2024-09-14 13:36:28 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [31mWARN [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Connection to node 1 (localhost/127.0.0.1:19092) could not be established. Node may not be available.
+2024-09-14 13:36:28 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.clients.FetchSessionHandler - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Error sending fetch request (sessionId=1331702049, epoch=INITIAL) to node 1:
+org.apache.kafka.common.errors.DisconnectException: null
+2024-09-14 13:36:29 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 1 disconnected.
+2024-09-14 13:36:29 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [31mWARN [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Connection to node 1 (localhost/127.0.0.1:19092) could not be established. Node may not be available.
+2024-09-14 13:36:29 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.clients.FetchSessionHandler - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Error sending fetch request (sessionId=1331702049, epoch=INITIAL) to node 1:
+org.apache.kafka.common.errors.DisconnectException: null
+2024-09-14 13:36:30 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 1 disconnected.
+2024-09-14 13:36:30 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [31mWARN [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Connection to node 1 (localhost/127.0.0.1:19092) could not be established. Node may not be available.
+2024-09-14 13:36:30 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.clients.FetchSessionHandler - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Error sending fetch request (sessionId=1331702049, epoch=INITIAL) to node 1:
+org.apache.kafka.common.errors.DisconnectException: null
+2024-09-14 13:36:31 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 2 disconnected.
+2024-09-14 13:36:31 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Node -2 disconnected.
+2024-09-14 13:36:31 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Cancelled in-flight FETCH request with correlation id 452 due to node 2 being disconnected (elapsed time since creation: 112ms, elapsed time since send: 112ms, request timeout: 30000ms)
+2024-09-14 13:36:31 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node -2 disconnected.
+2024-09-14 13:36:31 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.clients.FetchSessionHandler - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Error sending fetch request (sessionId=783443561, epoch=198) to node 2:
+org.apache.kafka.common.errors.DisconnectException: null
+2024-09-14 13:36:31 [kafka-coordinator-heartbeat-thread | customerViewConsumer] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 2147483645 disconnected.
+2024-09-14 13:36:31 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Node 2 disconnected.
+2024-09-14 13:36:31 [kafka-coordinator-heartbeat-thread | customerViewConsumer] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Group coordinator localhost:29092 (id: 2147483645 rack: null) is unavailable or invalid due to cause: coordinator unavailable. isDisconnected: true. Rediscovery will be attempted.
+2024-09-14 13:36:31 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Cancelled in-flight METADATA request with correlation id 12 due to node 2 being disconnected (elapsed time since creation: 1ms, elapsed time since send: 1ms, request timeout: 30000ms)
+2024-09-14 13:36:31 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Node 1 disconnected.
+2024-09-14 13:36:31 [kafka-producer-network-thread | producer-service-producer-1] [31mWARN [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Connection to node 1 (localhost/127.0.0.1:19092) could not be established. Node may not be available.
+2024-09-14 13:36:31 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 2 disconnected.
+2024-09-14 13:36:31 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [31mWARN [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Connection to node 2 (localhost/127.0.0.1:29092) could not be established. Node may not be available.
+2024-09-14 13:36:31 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Node 2 disconnected.
+2024-09-14 13:36:31 [kafka-producer-network-thread | producer-service-producer-1] [31mWARN [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Connection to node 2 (localhost/127.0.0.1:29092) could not be established. Node may not be available.
+2024-09-14 13:36:31 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 2 disconnected.
+2024-09-14 13:36:31 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [31mWARN [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Connection to node 2 (localhost/127.0.0.1:29092) could not be established. Node may not be available.
+2024-09-14 13:36:31 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 2 disconnected.
+2024-09-14 13:36:31 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [31mWARN [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Connection to node 2 (localhost/127.0.0.1:29092) could not be established. Node may not be available.
+2024-09-14 13:36:31 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Node 1 disconnected.
+2024-09-14 13:36:31 [kafka-producer-network-thread | producer-service-producer-1] [31mWARN [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Connection to node 1 (localhost/127.0.0.1:19092) could not be established. Node may not be available.
+2024-09-14 13:36:32 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 2 disconnected.
+2024-09-14 13:36:32 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [31mWARN [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Connection to node 2 (localhost/127.0.0.1:29092) could not be established. Node may not be available.
+2024-09-14 13:36:32 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Node 2 disconnected.
+2024-09-14 13:36:32 [kafka-producer-network-thread | producer-service-producer-1] [31mWARN [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Connection to node 2 (localhost/127.0.0.1:29092) could not be established. Node may not be available.
+2024-09-14 13:36:32 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Node 1 disconnected.
+2024-09-14 13:36:32 [kafka-producer-network-thread | producer-service-producer-1] [31mWARN [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Connection to node 1 (localhost/127.0.0.1:19092) could not be established. Node may not be available.
+2024-09-14 13:36:32 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 2 disconnected.
+2024-09-14 13:36:32 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [31mWARN [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Connection to node 2 (localhost/127.0.0.1:29092) could not be established. Node may not be available.
+2024-09-14 13:36:33 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Node 2 disconnected.
+2024-09-14 13:36:33 [kafka-producer-network-thread | producer-service-producer-1] [31mWARN [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Connection to node 2 (localhost/127.0.0.1:29092) could not be established. Node may not be available.
+2024-09-14 13:36:33 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 1 disconnected.
+2024-09-14 13:36:33 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [31mWARN [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Connection to node 1 (localhost/127.0.0.1:19092) could not be established. Node may not be available.
+2024-09-14 13:36:33 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 2 disconnected.
+2024-09-14 13:36:33 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [31mWARN [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Connection to node 2 (localhost/127.0.0.1:29092) could not be established. Node may not be available.
+2024-09-14 13:36:33 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.clients.FetchSessionHandler - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Error sending fetch request (sessionId=783443561, epoch=INITIAL) to node 2:
+org.apache.kafka.common.errors.DisconnectException: null
+2024-09-14 13:36:33 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.clients.FetchSessionHandler - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Error sending fetch request (sessionId=1331702049, epoch=INITIAL) to node 1:
+org.apache.kafka.common.errors.DisconnectException: null
+2024-09-14 13:36:34 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Node 1 disconnected.
+2024-09-14 13:36:34 [kafka-producer-network-thread | producer-service-producer-1] [31mWARN [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Connection to node 1 (localhost/127.0.0.1:19092) could not be established. Node may not be available.
+2024-09-14 13:36:34 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 2 disconnected.
+2024-09-14 13:36:34 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [31mWARN [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Connection to node 2 (localhost/127.0.0.1:29092) could not be established. Node may not be available.
+2024-09-14 13:36:35 [lettuce-eventExecutorLoop-1-14] [34mINFO [0;39m i.l.core.protocol.ConnectionWatchdog - Reconnecting, last destination was localhost/<unresolved>:6379
+2024-09-14 13:36:35 [lettuce-nioEventLoop-6-15] [31mWARN [0;39m i.l.core.protocol.ConnectionWatchdog - Cannot reconnect to [localhost/<unresolved>:6379]: Connection closed prematurely
+io.lettuce.core.RedisConnectionException: Connection closed prematurely
+	at io.lettuce.core.protocol.RedisHandshakeHandler.channelInactive(RedisHandshakeHandler.java:91)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:303)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:281)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelInactive(AbstractChannelHandlerContext.java:274)
+	at io.netty.channel.ChannelInboundHandlerAdapter.channelInactive(ChannelInboundHandlerAdapter.java:81)
+	at io.lettuce.core.ChannelGroupListener.channelInactive(ChannelGroupListener.java:69)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:303)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:281)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelInactive(AbstractChannelHandlerContext.java:274)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelInactive(DefaultChannelPipeline.java:1402)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:301)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:281)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelInactive(DefaultChannelPipeline.java:900)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe$7.run(AbstractChannel.java:811)
+	at io.netty.util.concurrent.AbstractEventExecutor.runTask$$$capture(AbstractEventExecutor.java:173)
+	at io.netty.util.concurrent.AbstractEventExecutor.runTask(AbstractEventExecutor.java)
+	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute$$$capture(AbstractEventExecutor.java:166)
+	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:469)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:566)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:994)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2024-09-14 13:36:35 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Node 2 disconnected.
+2024-09-14 13:36:35 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Cancelled in-flight API_VERSIONS request with correlation id 13 due to node 2 being disconnected (elapsed time since creation: 0ms, elapsed time since send: 0ms, request timeout: 30000ms)
+2024-09-14 13:36:35 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 2 disconnected.
+2024-09-14 13:36:35 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Cancelled in-flight API_VERSIONS request with correlation id 455 due to node 2 being disconnected (elapsed time since creation: 1ms, elapsed time since send: 1ms, request timeout: 30000ms)
+2024-09-14 13:36:36 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Node 1 disconnected.
+2024-09-14 13:36:36 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Cancelled in-flight API_VERSIONS request with correlation id 14 due to node 1 being disconnected (elapsed time since creation: 32ms, elapsed time since send: 32ms, request timeout: 30000ms)
+2024-09-14 13:36:36 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Node 2 disconnected.
+2024-09-14 13:36:36 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Cancelled in-flight API_VERSIONS request with correlation id 15 due to node 2 being disconnected (elapsed time since creation: 1ms, elapsed time since send: 1ms, request timeout: 30000ms)
+2024-09-14 13:36:36 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 2 disconnected.
+2024-09-14 13:36:36 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Cancelled in-flight API_VERSIONS request with correlation id 456 due to node 2 being disconnected (elapsed time since creation: 0ms, elapsed time since send: 0ms, request timeout: 30000ms)
+2024-09-14 13:36:37 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Node 1 disconnected.
+2024-09-14 13:36:37 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Cancelled in-flight API_VERSIONS request with correlation id 16 due to node 1 being disconnected (elapsed time since creation: 1ms, elapsed time since send: 1ms, request timeout: 30000ms)
+2024-09-14 13:36:37 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Node 2 disconnected.
+2024-09-14 13:36:37 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Cancelled in-flight API_VERSIONS request with correlation id 17 due to node 2 being disconnected (elapsed time since creation: 1ms, elapsed time since send: 1ms, request timeout: 30000ms)
+2024-09-14 13:36:37 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 2 disconnected.
+2024-09-14 13:36:37 [cluster-ClusterId{value='66e558b72be2e8469094c467', description='null'}-localhost:27017] [34mINFO [0;39m org.mongodb.driver.cluster - Exception in monitor thread while connecting to server localhost:27017
+com.mongodb.MongoSocketReadException: Prematurely reached end of stream
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:178)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:196)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveResponseBuffers(InternalStreamConnection.java:716)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:580)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveCommandMessageResponse(InternalStreamConnection.java:428)
+	at com.mongodb.internal.connection.InternalStreamConnection.sendAndReceive(InternalStreamConnection.java:354)
+	at com.mongodb.internal.connection.CommandHelper.sendAndReceive(CommandHelper.java:92)
+	at com.mongodb.internal.connection.CommandHelper.executeCommand(CommandHelper.java:48)
+	at com.mongodb.internal.connection.InternalStreamConnectionInitializer.initializeConnectionDescription(InternalStreamConnectionInitializer.java:130)
+	at com.mongodb.internal.connection.InternalStreamConnectionInitializer.startHandshake(InternalStreamConnectionInitializer.java:78)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:203)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:193)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:153)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2024-09-14 13:36:37 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Cancelled in-flight API_VERSIONS request with correlation id 457 due to node 2 being disconnected (elapsed time since creation: 1ms, elapsed time since send: 1ms, request timeout: 30000ms)
+2024-09-14 13:36:38 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Node 1 disconnected.
+2024-09-14 13:36:38 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Cancelled in-flight API_VERSIONS request with correlation id 18 due to node 1 being disconnected (elapsed time since creation: 1ms, elapsed time since send: 1ms, request timeout: 30000ms)
+2024-09-14 13:36:38 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 2 disconnected.
+2024-09-14 13:36:38 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Cancelled in-flight API_VERSIONS request with correlation id 458 due to node 2 being disconnected (elapsed time since creation: 0ms, elapsed time since send: 0ms, request timeout: 30000ms)
+2024-09-14 13:36:38 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 1 disconnected.
+2024-09-14 13:36:38 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Cancelled in-flight API_VERSIONS request with correlation id 460 due to node 1 being disconnected (elapsed time since creation: 1ms, elapsed time since send: 1ms, request timeout: 30000ms)
+2024-09-14 13:36:38 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.clients.FetchSessionHandler - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Error sending fetch request (sessionId=1331702049, epoch=INITIAL) to node 1:
+org.apache.kafka.common.errors.DisconnectException: null
+2024-09-14 13:36:39 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Node 2 disconnected.
+2024-09-14 13:36:39 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Cancelled in-flight API_VERSIONS request with correlation id 19 due to node 2 being disconnected (elapsed time since creation: 1ms, elapsed time since send: 1ms, request timeout: 30000ms)
+2024-09-14 13:36:39 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Node 1 disconnected.
+2024-09-14 13:36:39 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Cancelled in-flight API_VERSIONS request with correlation id 20 due to node 1 being disconnected (elapsed time since creation: 1ms, elapsed time since send: 1ms, request timeout: 30000ms)
+2024-09-14 13:36:39 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 2 disconnected.
+2024-09-14 13:36:39 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Cancelled in-flight API_VERSIONS request with correlation id 461 due to node 2 being disconnected (elapsed time since creation: 1ms, elapsed time since send: 1ms, request timeout: 30000ms)
+2024-09-14 13:36:40 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Node 2 disconnected.
+2024-09-14 13:36:40 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Cancelled in-flight API_VERSIONS request with correlation id 21 due to node 2 being disconnected (elapsed time since creation: 1ms, elapsed time since send: 1ms, request timeout: 30000ms)
+2024-09-14 13:36:40 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 2 disconnected.
+2024-09-14 13:36:40 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Cancelled in-flight API_VERSIONS request with correlation id 462 due to node 2 being disconnected (elapsed time since creation: 0ms, elapsed time since send: 0ms, request timeout: 30000ms)
+2024-09-14 13:36:41 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Node 1 disconnected.
+2024-09-14 13:36:41 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Cancelled in-flight API_VERSIONS request with correlation id 22 due to node 1 being disconnected (elapsed time since creation: 0ms, elapsed time since send: 0ms, request timeout: 30000ms)
+2024-09-14 13:36:41 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Node 2 disconnected.
+2024-09-14 13:36:41 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Cancelled in-flight API_VERSIONS request with correlation id 463 due to node 2 being disconnected (elapsed time since creation: 0ms, elapsed time since send: 0ms, request timeout: 30000ms)
+2024-09-14 13:36:42 [kafka-producer-network-thread | producer-service-producer-1] [31mWARN [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Error while fetching metadata with correlation id 24 : {CreateCustomerEventTopic=LEADER_NOT_AVAILABLE}
+2024-09-14 13:36:42 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [31mWARN [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Error while fetching metadata with correlation id 465 : {CustomerViewEventTopic=LEADER_NOT_AVAILABLE}
+2024-09-14 13:36:43 [kafka-producer-network-thread | producer-service-producer-1] [31mWARN [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Error while fetching metadata with correlation id 25 : {CreateCustomerEventTopic=LEADER_NOT_AVAILABLE}
+2024-09-14 13:36:43 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [31mWARN [0;39m o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Error while fetching metadata with correlation id 467 : {CustomerViewEventTopic=LEADER_NOT_AVAILABLE}
+2024-09-14 13:36:43 [kafka-producer-network-thread | producer-service-producer-1] [31mWARN [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Error while fetching metadata with correlation id 26 : {CreateCustomerEventTopic=LEADER_NOT_AVAILABLE}
+2024-09-14 13:36:43 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Resetting the last seen epoch of partition CustomerViewEventTopic-0 to 2 since the associated topicId changed from null to _NHcEnsJT2W0Lt-SLaYFKQ
+2024-09-14 13:36:43 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Resetting the last seen epoch of partition CustomerViewEventTopic-1 to 10 since the associated topicId changed from null to _NHcEnsJT2W0Lt-SLaYFKQ
+2024-09-14 13:36:43 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Discovered group coordinator localhost:19092 (id: 2147483646 rack: null)
+2024-09-14 13:36:43 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Attempt to heartbeat with Generation{generationId=106, memberId='consumer-customerViewConsumer-1-e3c3ff40-2f7e-4b18-b221-8abf7975ac19', protocol='range'} and group instance id Optional.empty failed due to UNKNOWN_MEMBER_ID, resetting generation
+2024-09-14 13:36:43 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Resetting generation and member id due to: encountered UNKNOWN_MEMBER_ID from HEARTBEAT response
+2024-09-14 13:36:43 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Request joining group due to: encountered UNKNOWN_MEMBER_ID from HEARTBEAT response
+2024-09-14 13:36:43 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Giving away all assigned partitions as lost since generation/memberID has been reset,indicating that consumer is in old state or no longer part of the group
+2024-09-14 13:36:43 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerRebalanceListenerInvoker - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Lost previously assigned partitions CustomerViewEventTopic-0, CustomerViewEventTopic-1
+2024-09-14 13:36:43 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.s.k.l.KafkaMessageListenerContainer - customerViewConsumer: partitions lost: [CustomerViewEventTopic-0, CustomerViewEventTopic-1]
+2024-09-14 13:36:43 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.s.k.l.KafkaMessageListenerContainer - customerViewConsumer: partitions revoked: [CustomerViewEventTopic-0, CustomerViewEventTopic-1]
+2024-09-14 13:36:43 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] (Re-)joining group
+2024-09-14 13:36:43 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Request joining group due to: need to re-join with the given member-id: consumer-customerViewConsumer-1-3ea42f90-c0a1-40e2-9532-cba07ca04d24
+2024-09-14 13:36:43 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] (Re-)joining group
+2024-09-14 13:36:43 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m org.apache.kafka.clients.Metadata - [Producer clientId=producer-service-producer-1] Resetting the last seen epoch of partition CreateCustomerEventTopic-0 to 10 since the associated topicId changed from null to pnyPc_p9T_GdKaeDr5Nzig
+2024-09-14 13:36:43 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m org.apache.kafka.clients.Metadata - [Producer clientId=producer-service-producer-1] Resetting the last seen epoch of partition CreateCustomerEventTopic-1 to 2 since the associated topicId changed from null to pnyPc_p9T_GdKaeDr5Nzig
+2024-09-14 13:36:46 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Successfully joined group with generation Generation{generationId=1, memberId='consumer-customerViewConsumer-1-3ea42f90-c0a1-40e2-9532-cba07ca04d24', protocol='range'}
+2024-09-14 13:36:46 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Finished assignment for group at generation 1: {consumer-customerViewConsumer-1-3ea42f90-c0a1-40e2-9532-cba07ca04d24=Assignment(partitions=[CustomerViewEventTopic-0, CustomerViewEventTopic-1])}
+2024-09-14 13:36:46 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Successfully synced group in generation Generation{generationId=1, memberId='consumer-customerViewConsumer-1-3ea42f90-c0a1-40e2-9532-cba07ca04d24', protocol='range'}
+2024-09-14 13:36:46 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Notifying assignor about the new Assignment(partitions=[CustomerViewEventTopic-0, CustomerViewEventTopic-1])
+2024-09-14 13:36:46 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerRebalanceListenerInvoker - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Adding newly assigned partitions: CustomerViewEventTopic-0, CustomerViewEventTopic-1
+2024-09-14 13:36:46 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Found no committed offset for partition CustomerViewEventTopic-0
+2024-09-14 13:36:46 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Found no committed offset for partition CustomerViewEventTopic-1
+2024-09-14 13:36:46 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.SubscriptionState - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Resetting offset for partition CustomerViewEventTopic-0 to position FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:19092 (id: 1 rack: null)], epoch=2}}.
+2024-09-14 13:36:46 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.SubscriptionState - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Resetting offset for partition CustomerViewEventTopic-1 to position FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:29092 (id: 2 rack: null)], epoch=10}}.
+2024-09-14 13:36:46 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.s.k.l.KafkaMessageListenerContainer - customerViewConsumer: partitions assigned: [CustomerViewEventTopic-0, CustomerViewEventTopic-1]
+2024-09-14 13:36:47 [cluster-ClusterId{value='66e558b72be2e8469094c467', description='null'}-localhost:27017] [34mINFO [0;39m org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=2793610}
+2024-09-14 13:36:51 [lettuce-eventExecutorLoop-1-15] [34mINFO [0;39m i.l.core.protocol.ConnectionWatchdog - Reconnecting, last destination was localhost/<unresolved>:6379
+2024-09-14 13:36:51 [lettuce-nioEventLoop-6-16] [34mINFO [0;39m i.l.c.protocol.ReconnectionHandler - Reconnected to localhost/<unresolved>:6379
+2024-09-14 13:36:58 [http-nio-9001-exec-6] [34mINFO [0;39m c.z.p.s.impl.CustomerServiceImpl - Received command: com.zhigalko.producer.command.CreateCustomerCommand@6623e55c
+2024-09-14 13:36:58 [http-nio-9001-exec-6] [34mINFO [0;39m c.z.p.h.i.CreateCustomerCommandHandler - Avro event created with event type - CreateCustomerEvent
+2024-09-14 13:36:58 [http-nio-9001-exec-6] [34mINFO [0;39m c.z.core.service.KafkaProducer - Sending kafka message on topic CreateCustomerEventTopic
+2024-09-14 13:36:58 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m c.z.core.service.KafkaProducer - Kafka message successfully sent on topic CreateCustomerEventTopic and value {"id": "0086e9cd-4bc2-4f9c-bc2b-f14b9fe2dc75", "name": "Anna", "address": "New York", "timestamp": "2024-09-14T09:36:58.697077767Z", "eventType": "CreateCustomerEvent"}
+2024-09-14 13:36:58 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m c.z.producer.listener.KafkaConsumer - Received event: ConsumerRecord(topic = CustomerViewEventTopic, partition = 1, leaderEpoch = 10, offset = 0, CreateTime = 1726306618821, serialized key size = -1, serialized value size = 113, headers = RecordHeaders(headers = [], isReadOnly = false), key = null, value = {"id": "1c310f99-c21f-4629-b1b4-10750f9e019a", "name": "Anna", "address": "New York", "timestamp": "2024-09-14T09:36:58.821323836Z", "eventType": "CreateCustomerViewEvent", "aggregateId": 1, "version": 1})
+2024-09-14 13:36:58 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m c.z.p.projector.CustomerProjector - Updated customer projection for: 1
+2024-09-14 13:36:58 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m c.z.p.s.i.CustomerQueryServiceImpl - Customer projection was stored: id - 1, name - Anna
+2024-09-14 13:36:58 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m c.z.p.s.i.CustomerQueryServiceImpl - Saved in cached value: CustomerProjection[id=1, name=Anna, address=New York]
+2024-09-14 13:37:19 [http-nio-9001-exec-8] [34mINFO [0;39m o.s.d.m.core.convert.QueryMapper - Could not map 'Customer.id'; Maybe a fragment in 'Long' is considered a simple type; Mapper continues with id
+2024-09-14 13:37:19 [http-nio-9001-exec-8] [34mINFO [0;39m c.z.p.s.i.CustomerQueryServiceImpl - Saved in cached value: CustomerProjection[id=1, name=Anna, address=New York]
+2024-09-14 13:46:22 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Node 1 disconnected.
+2024-09-14 13:48:53 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Node -1 disconnected.
+2024-09-14 13:58:23 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Node 2 disconnected.
+2024-09-14 14:12:53 [kafka-producer-network-thread | producer-service-producer-1] [34mINFO [0;39m o.apache.kafka.clients.NetworkClient - [Producer clientId=producer-service-producer-1] Node 1 disconnected.
+2024-09-14 14:21:18 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerRebalanceListenerInvoker - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Revoke previously assigned partitions CustomerViewEventTopic-0, CustomerViewEventTopic-1
+2024-09-14 14:21:18 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.s.k.l.KafkaMessageListenerContainer - customerViewConsumer: partitions revoked: [CustomerViewEventTopic-0, CustomerViewEventTopic-1]
+2024-09-14 14:21:18 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Member consumer-customerViewConsumer-1-3ea42f90-c0a1-40e2-9532-cba07ca04d24 sending LeaveGroup request to coordinator localhost:19092 (id: 2147483646 rack: null) due to the consumer unsubscribed from all topics
+2024-09-14 14:21:18 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Resetting generation and member id due to: consumer pro-actively leaving the group
+2024-09-14 14:21:18 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Request joining group due to: consumer pro-actively leaving the group
+2024-09-14 14:21:18 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.LegacyKafkaConsumer - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Unsubscribed all topics or patterns and assigned partitions
+2024-09-14 14:21:18 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Resetting generation and member id due to: consumer pro-actively leaving the group
+2024-09-14 14:21:18 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-customerViewConsumer-1, groupId=customerViewConsumer] Request joining group due to: consumer pro-actively leaving the group
+2024-09-14 14:21:18 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.kafka.common.metrics.Metrics - Metrics scheduler closed
+2024-09-14 14:21:18 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.kafka.common.metrics.Metrics - Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2024-09-14 14:21:18 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.kafka.common.metrics.Metrics - Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+2024-09-14 14:21:18 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.kafka.common.metrics.Metrics - Metrics reporters closed
+2024-09-14 14:21:18 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.a.kafka.common.utils.AppInfoParser - App info kafka.consumer for consumer-customerViewConsumer-1 unregistered
+2024-09-14 14:21:18 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [34mINFO [0;39m o.s.k.l.KafkaMessageListenerContainer - customerViewConsumer: Consumer stopped
+2024-09-14 14:21:19 [SpringApplicationShutdownHook] [34mINFO [0;39m o.a.k.clients.producer.KafkaProducer - [Producer clientId=producer-service-producer-1] Closing the Kafka producer with timeoutMillis = 30000 ms.
+2024-09-14 14:21:19 [SpringApplicationShutdownHook] [34mINFO [0;39m o.a.kafka.common.metrics.Metrics - Metrics scheduler closed
+2024-09-14 14:21:19 [SpringApplicationShutdownHook] [34mINFO [0;39m o.a.kafka.common.metrics.Metrics - Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2024-09-14 14:21:19 [SpringApplicationShutdownHook] [34mINFO [0;39m o.a.kafka.common.metrics.Metrics - Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+2024-09-14 14:21:19 [SpringApplicationShutdownHook] [34mINFO [0;39m o.a.kafka.common.metrics.Metrics - Metrics reporters closed
+2024-09-14 14:21:19 [SpringApplicationShutdownHook] [34mINFO [0;39m o.a.kafka.common.utils.AppInfoParser - App info kafka.producer for producer-service-producer-1 unregistered

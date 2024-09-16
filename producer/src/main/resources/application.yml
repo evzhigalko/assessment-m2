@@ -1,0 +1,76 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: producer-service
+  data:
+    mongodb:
+      database: customers
+      uri: mongodb://admin:password@localhost:27017/admin?authSource=admin
+      authentication-database: admin
+    redis:
+      host: localhost
+      port: 6379
+  kafka:
+    bootstrap-servers: http://localhost:19092,http://localhost:29092
+    producer:
+      keySerializer: org.apache.kafka.common.serialization.StringSerializer
+      valueSerializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+      properties:
+        schema:
+          registry:
+            url: http://127.0.0.1:8081
+    consumer:
+      group-id: customerViewConsumer
+      auto-offset-reset: earliest
+      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      properties:
+        spring:
+          deserializer:
+            key:
+              delegate:
+                class: org.apache.kafka.common.serialization.StringDeserializer
+            value:
+              delegate:
+                class: io.confluent.kafka.serializers.KafkaAvroDeserializer
+        schema:
+          registry:
+            url: http://localhost:8081
+        specific:
+          avro:
+            reader: true
+  jpa:
+    open-in-view: false
+
+kafka:
+  topics:
+    create-customer-event:
+      name: CreateCustomerEventTopic
+      partitions: 2
+      replicationFactor: 2
+    customer-view-event:
+      name: CustomerViewEventTopic
+      partitions: 2
+      replicationFactor: 2
+    update-customer-name-event:
+      name: UpdateCustomerNameEventTopic
+      partitions: 2
+      replicationFactor: 2
+    update-customer-address-event:
+      name: UpdateCustomerAddressEventTopic
+      partitions: 2
+      replicationFactor: 2
+    delete-customer-event:
+      name: DeleteCustomerEventTopic
+      partitions: 2
+      replicationFactor: 2
+
+redis:
+  properties:
+    cache-ttl: 3600
+    cache-name: customers
+
+logging:
+  config: /home/anduser/dev/assessment/assessment-m2/producer/src/main/resources/logback.xml
