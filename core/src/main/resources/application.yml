@@ -4,9 +4,9 @@ spring:
   jpa:
     open-in-view: false
   kafka:
-    bootstrap-servers: http://localhost:19092
+    bootstrap-servers: http://localhost:19092,http://localhost:29092
     consumer:
-      group-id: testConsumer
+      group-id: customerConsumer
       auto-offset-reset: earliest
       keyDeserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
       valueDeserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
@@ -36,21 +36,21 @@ kafka:
   topics:
     create-customer-event:
       name: CreateCustomerEventTopic
-      partitions: 2
+      partitions: 1
       replicationFactor: 2
     customer-view-event:
       name: CustomerViewEventTopic
-      partitions: 2
+      partitions: 1
       replicationFactor: 2
     update-customer-name-event:
       name: UpdateCustomerNameEventTopic
-      partitions: 2
+      partitions: 1
       replicationFactor: 2
     update-customer-address-event:
       name: UpdateCustomerAddressEventTopic
-      partitions: 2
+      partitions: 1
       replicationFactor: 2
     delete-customer-event:
       name: DeleteCustomerEventTopic
-      partitions: 2
+      partitions: 1
       replicationFactor: 2
