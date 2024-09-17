@@ -1,9 +1,9 @@
 package com.zhigalko.consumer.service;
 
-import com.zhigalko.core.schema.CreateCustomerAvroEvent;
-import com.zhigalko.core.schema.DeleteCustomerAvroEvent;
-import com.zhigalko.core.schema.UpdateCustomerAddressAvroEvent;
-import com.zhigalko.core.schema.UpdateCustomerNameAvroEvent;
+import com.zhigalko.common.schema.CreateCustomerAvroEvent;
+import com.zhigalko.common.schema.DeleteCustomerAvroEvent;
+import com.zhigalko.common.schema.UpdateCustomerAddressAvroEvent;
+import com.zhigalko.common.schema.UpdateCustomerNameAvroEvent;
 
 public interface EventService {
 	void createCustomer(CreateCustomerAvroEvent event);

@@ -1,7 +1,7 @@
 package com.zhigalko.producer.unit.mapper;
 
-import com.zhigalko.core.domain.model.Customer;
-import com.zhigalko.core.schema.CustomerViewAvroEvent;
+import com.zhigalko.common.domain.model.Customer;
+import com.zhigalko.common.schema.CustomerViewAvroEvent;
 import com.zhigalko.producer.mapper.CustomerMapper;
 import com.zhigalko.producer.mapper.CustomerMapperImpl;
 import com.zhigalko.producer.util.TestDataUtil;

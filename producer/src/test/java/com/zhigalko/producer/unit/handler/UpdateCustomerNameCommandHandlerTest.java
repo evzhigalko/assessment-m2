@@ -1,9 +1,9 @@
 package com.zhigalko.producer.unit.handler;
 
-import com.zhigalko.core.domain.EventType;
-import com.zhigalko.core.schema.UpdateCustomerNameAvroEvent;
-import com.zhigalko.core.service.KafkaProducer;
-import com.zhigalko.core.util.KafkaCustomProperties;
+import com.zhigalko.common.domain.EventType;
+import com.zhigalko.common.schema.UpdateCustomerNameAvroEvent;
+import com.zhigalko.common.service.KafkaProducer;
+import com.zhigalko.common.util.KafkaCustomProperties;
 import com.zhigalko.producer.command.UpdateCustomerNameCommand;
 import com.zhigalko.producer.handler.impl.UpdateCustomerNameCommandHandler;
 import org.junit.jupiter.api.BeforeEach;

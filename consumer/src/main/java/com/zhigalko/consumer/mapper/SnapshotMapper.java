@@ -1,7 +1,7 @@
 package com.zhigalko.consumer.mapper;
 
-import com.zhigalko.core.domain.model.Snapshot;
-import com.zhigalko.core.event.CreateCustomerEvent;
+import com.zhigalko.common.domain.model.Snapshot;
+import com.zhigalko.common.event.CreateCustomerEvent;
 import java.util.UUID;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

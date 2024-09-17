@@ -1,0 +1,37 @@
+{
+  "namespace": "com.zhigalko.common.schema",
+  "type": "record",
+  "name": "CustomerViewAvroEvent",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "address",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "timestamp",
+      "type": "string"
+    },
+    {
+      "name": "eventType",
+      "type": "string"
+    },
+    {
+      "name": "aggregateId",
+      "type": "long"
+    },
+    {
+      "name": "version",
+      "type": "long"
+    }
+  ]
+}

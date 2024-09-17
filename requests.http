@@ -1,4 +1,3 @@
-###
 ### Create a new customer
 POST http://localhost:9001/api/v1/customers
 Content-Type: application/json
@@ -9,7 +8,7 @@ Content-Type: application/json
 }
 
 ### GET custoimer by id
-GET http://localhost:9001/api/v1/customers/6
+GET http://localhost:9001/api/v1/customers/9
 Content-Type: application/json
 
 ### Delete a customer by ID

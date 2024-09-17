@@ -1,7 +1,7 @@
 package com.zhigalko.producer.mapper;
 
-import com.zhigalko.core.domain.model.Customer;
-import com.zhigalko.core.schema.CustomerViewAvroEvent;
+import com.zhigalko.common.domain.model.Customer;
+import com.zhigalko.common.schema.CustomerViewAvroEvent;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;

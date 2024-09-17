@@ -1,13 +1,13 @@
 package com.zhigalko.producer.projector;
 
-import com.zhigalko.core.domain.model.Customer;
-import com.zhigalko.core.schema.CustomerViewAvroEvent;
+import com.zhigalko.common.domain.model.Customer;
+import com.zhigalko.common.schema.CustomerViewAvroEvent;
 import com.zhigalko.producer.mapper.CustomerMapper;
 import com.zhigalko.producer.service.CustomerQueryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import static com.zhigalko.core.domain.EventType.DELETE_CUSTOMER_VIEW;
+import static com.zhigalko.common.domain.EventType.DELETE_CUSTOMER_VIEW;
 
 @Slf4j
 @Service

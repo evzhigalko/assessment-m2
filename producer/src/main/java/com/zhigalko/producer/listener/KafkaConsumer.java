@@ -1,7 +1,6 @@
 package com.zhigalko.producer.listener;
 
-import com.zhigalko.core.schema.CustomerViewAvroEvent;
-import com.zhigalko.core.schema.UpdateCustomerNameAvroEvent;
+import com.zhigalko.common.schema.CustomerViewAvroEvent;
 import com.zhigalko.producer.projector.CustomerProjector;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

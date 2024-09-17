@@ -1,6 +1,6 @@
 package com.zhigalko.producer.unit.listener;
 
-import com.zhigalko.core.schema.CustomerViewAvroEvent;
+import com.zhigalko.common.schema.CustomerViewAvroEvent;
 import com.zhigalko.producer.listener.KafkaConsumer;
 import com.zhigalko.producer.projector.CustomerProjector;
 import java.util.UUID;

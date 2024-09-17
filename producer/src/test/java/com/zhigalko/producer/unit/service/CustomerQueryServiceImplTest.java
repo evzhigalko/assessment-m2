@@ -1,9 +1,9 @@
 package com.zhigalko.producer.unit.service;
 
-import com.zhigalko.core.domain.model.Customer;
-import com.zhigalko.core.exception.CustomerNotFoundException;
-import com.zhigalko.core.projection.CustomerProjection;
-import com.zhigalko.core.query.GetCustomerById;
+import com.zhigalko.common.domain.model.Customer;
+import com.zhigalko.common.exception.CustomerNotFoundException;
+import com.zhigalko.common.projection.CustomerProjection;
+import com.zhigalko.common.query.GetCustomerById;
 import com.zhigalko.producer.mapper.CustomerProjectionMapper;
 import com.zhigalko.producer.repository.CustomerRepository;
 import com.zhigalko.producer.service.CacheService;
@@ -17,7 +17,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import static com.zhigalko.core.util.Util.toJson;
+import static com.zhigalko.common.util.Util.toJson;
 import static com.zhigalko.producer.constants.CommonConstant.CACHE_KEY;
 import static com.zhigalko.producer.util.TestDataUtil.getCustomer;
 import static com.zhigalko.producer.util.TestDataUtil.getProjection;

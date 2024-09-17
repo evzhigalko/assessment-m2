@@ -1,7 +1,7 @@
 package com.zhigalko.producer.unit.projector;
 
-import com.zhigalko.core.domain.model.Customer;
-import com.zhigalko.core.schema.CustomerViewAvroEvent;
+import com.zhigalko.common.domain.model.Customer;
+import com.zhigalko.common.schema.CustomerViewAvroEvent;
 import com.zhigalko.producer.mapper.CustomerMapper;
 import com.zhigalko.producer.projector.CustomerProjector;
 import com.zhigalko.producer.service.CustomerQueryService;
@@ -11,9 +11,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import static com.zhigalko.core.domain.EventType.DELETE_CUSTOMER_VIEW;
-import static com.zhigalko.core.domain.EventType.UPDATE_CUSTOMER_ADDRESS_VIEW;
-import static com.zhigalko.core.domain.EventType.UPDATE_CUSTOMER_NAME_VIEW;
+import static com.zhigalko.common.domain.EventType.DELETE_CUSTOMER_VIEW;
+import static com.zhigalko.common.domain.EventType.UPDATE_CUSTOMER_ADDRESS_VIEW;
+import static com.zhigalko.common.domain.EventType.UPDATE_CUSTOMER_NAME_VIEW;
 import static com.zhigalko.producer.util.TestDataUtil.getCustomer;
 import static com.zhigalko.producer.util.TestDataUtil.getCustomerViewAvroEvent;
 import static org.assertj.core.api.Assertions.assertThat;

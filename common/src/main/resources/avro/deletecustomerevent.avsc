@@ -1,0 +1,23 @@
+{
+  "namespace": "com.zhigalko.common.schema",
+  "type": "record",
+  "name": "DeleteCustomerAvroEvent",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string"
+    },
+    {
+      "name": "timestamp",
+      "type": "string"
+    },
+    {
+      "name": "eventType",
+      "type": "string"
+    },
+    {
+      "name": "aggregateId",
+      "type": "long"
+    }
+  ]
+}

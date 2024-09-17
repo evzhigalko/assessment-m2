@@ -1,9 +1,9 @@
 package com.zhigalko.producer.unit.handler;
 
-import com.zhigalko.core.domain.EventType;
-import com.zhigalko.core.schema.DeleteCustomerAvroEvent;
-import com.zhigalko.core.service.KafkaProducer;
-import com.zhigalko.core.util.KafkaCustomProperties;
+import com.zhigalko.common.domain.EventType;
+import com.zhigalko.common.schema.DeleteCustomerAvroEvent;
+import com.zhigalko.common.service.KafkaProducer;
+import com.zhigalko.common.util.KafkaCustomProperties;
 import com.zhigalko.producer.command.DeleteCustomerCommand;
 import com.zhigalko.producer.handler.impl.DeleteCustomerCommandHandler;
 import org.junit.jupiter.api.BeforeEach;

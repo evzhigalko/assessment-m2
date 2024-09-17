@@ -1,7 +1,7 @@
 package com.zhigalko.producer.controller;
 
-import com.zhigalko.core.exception.CustomerNotFoundException;
-import com.zhigalko.core.exception.KafkaException;
+import com.zhigalko.common.exception.CustomerNotFoundException;
+import com.zhigalko.common.exception.KafkaException;
 import com.zhigalko.producer.dto.MessageDto;
 import java.util.Objects;
 import java.util.stream.Collectors;

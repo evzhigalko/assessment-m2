@@ -1,10 +1,10 @@
 package com.zhigalko.consumer.listener;
 
 import com.zhigalko.consumer.service.EventService;
-import com.zhigalko.core.schema.CreateCustomerAvroEvent;
-import com.zhigalko.core.schema.DeleteCustomerAvroEvent;
-import com.zhigalko.core.schema.UpdateCustomerAddressAvroEvent;
-import com.zhigalko.core.schema.UpdateCustomerNameAvroEvent;
+import com.zhigalko.common.schema.CreateCustomerAvroEvent;
+import com.zhigalko.common.schema.DeleteCustomerAvroEvent;
+import com.zhigalko.common.schema.UpdateCustomerAddressAvroEvent;
+import com.zhigalko.common.schema.UpdateCustomerNameAvroEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;

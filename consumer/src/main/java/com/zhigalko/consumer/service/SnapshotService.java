@@ -1,7 +1,7 @@
 package com.zhigalko.consumer.service;
 
-import com.zhigalko.core.domain.model.Snapshot;
-import com.zhigalko.core.event.CreateCustomerEvent;
+import com.zhigalko.common.domain.model.Snapshot;
+import com.zhigalko.common.event.CreateCustomerEvent;
 
 public interface SnapshotService {
 	void save(Snapshot snapshot);

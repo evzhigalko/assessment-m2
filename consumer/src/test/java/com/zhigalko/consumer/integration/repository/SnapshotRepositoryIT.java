@@ -1,8 +1,8 @@
 package com.zhigalko.consumer.integration.repository;
 
 import com.zhigalko.consumer.repository.SnapshotRepository;
-import com.zhigalko.core.annotation.IT;
-import com.zhigalko.core.domain.model.Snapshot;
+import com.zhigalko.common.annotation.IT;
+import com.zhigalko.common.domain.model.Snapshot;
 import java.util.Optional;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;

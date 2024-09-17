@@ -1,25 +1,25 @@
 package com.zhigalko.consumer.util;
 
-import com.zhigalko.core.domain.model.Snapshot;
-import com.zhigalko.core.event.CreateCustomerEvent;
-import com.zhigalko.core.event.DeleteCustomerEvent;
-import com.zhigalko.core.event.UpdateCustomerAddressEvent;
-import com.zhigalko.core.event.UpdateCustomerNameEvent;
-import com.zhigalko.core.schema.CreateCustomerAvroEvent;
-import com.zhigalko.core.schema.DeleteCustomerAvroEvent;
-import com.zhigalko.core.schema.UpdateCustomerAddressAvroEvent;
-import com.zhigalko.core.schema.UpdateCustomerNameAvroEvent;
+import com.zhigalko.common.domain.model.Snapshot;
+import com.zhigalko.common.event.CreateCustomerEvent;
+import com.zhigalko.common.event.DeleteCustomerEvent;
+import com.zhigalko.common.event.UpdateCustomerAddressEvent;
+import com.zhigalko.common.event.UpdateCustomerNameEvent;
+import com.zhigalko.common.schema.CreateCustomerAvroEvent;
+import com.zhigalko.common.schema.DeleteCustomerAvroEvent;
+import com.zhigalko.common.schema.UpdateCustomerAddressAvroEvent;
+import com.zhigalko.common.schema.UpdateCustomerNameAvroEvent;
 import java.time.Instant;
 import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import static com.zhigalko.core.domain.EventType.CREATE_CUSTOMER;
-import static com.zhigalko.core.domain.EventType.CREATE_CUSTOMER_VIEW;
-import static com.zhigalko.core.domain.EventType.DELETE_CUSTOMER_VIEW;
-import static com.zhigalko.core.domain.EventType.UPDATE_CUSTOMER_ADDRESS;
-import static com.zhigalko.core.domain.EventType.UPDATE_CUSTOMER_ADDRESS_VIEW;
-import static com.zhigalko.core.domain.EventType.UPDATE_CUSTOMER_NAME;
-import static com.zhigalko.core.domain.EventType.UPDATE_CUSTOMER_NAME_VIEW;
+import static com.zhigalko.common.domain.EventType.CREATE_CUSTOMER;
+import static com.zhigalko.common.domain.EventType.CREATE_CUSTOMER_VIEW;
+import static com.zhigalko.common.domain.EventType.DELETE_CUSTOMER_VIEW;
+import static com.zhigalko.common.domain.EventType.UPDATE_CUSTOMER_ADDRESS;
+import static com.zhigalko.common.domain.EventType.UPDATE_CUSTOMER_ADDRESS_VIEW;
+import static com.zhigalko.common.domain.EventType.UPDATE_CUSTOMER_NAME;
+import static com.zhigalko.common.domain.EventType.UPDATE_CUSTOMER_NAME_VIEW;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class TestDataUtil {

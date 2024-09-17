@@ -1,7 +1,7 @@
 package com.zhigalko.producer.controller;
 
-import com.zhigalko.core.projection.CustomerProjection;
-import com.zhigalko.core.query.GetCustomerById;
+import com.zhigalko.common.projection.CustomerProjection;
+import com.zhigalko.common.query.GetCustomerById;
 import com.zhigalko.producer.service.CustomerQueryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

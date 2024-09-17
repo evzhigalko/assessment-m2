@@ -1,18 +1,15 @@
 package com.zhigalko.consumer.mapper;
 
-import com.zhigalko.core.event.CreateCustomerEvent;
-import com.zhigalko.core.event.DeleteCustomerEvent;
-import com.zhigalko.core.event.UpdateCustomerAddressEvent;
-import com.zhigalko.core.event.UpdateCustomerNameEvent;
-import com.zhigalko.core.schema.CreateCustomerAvroEvent;
-import com.zhigalko.core.schema.DeleteCustomerAvroEvent;
-import com.zhigalko.core.schema.UpdateCustomerAddressAvroEvent;
-import com.zhigalko.core.schema.UpdateCustomerNameAvroEvent;
-import java.time.Instant;
-import java.time.ZoneId;
+import com.zhigalko.common.event.CreateCustomerEvent;
+import com.zhigalko.common.event.DeleteCustomerEvent;
+import com.zhigalko.common.event.UpdateCustomerAddressEvent;
+import com.zhigalko.common.event.UpdateCustomerNameEvent;
+import com.zhigalko.common.schema.CreateCustomerAvroEvent;
+import com.zhigalko.common.schema.DeleteCustomerAvroEvent;
+import com.zhigalko.common.schema.UpdateCustomerAddressAvroEvent;
+import com.zhigalko.common.schema.UpdateCustomerNameAvroEvent;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Named;
 
 @Mapper(componentModel = "spring")
 public interface EventMapper extends BaseMapper {

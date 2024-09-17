@@ -1,15 +1,14 @@
 package com.zhigalko.producer.handler.impl;
 
-import com.zhigalko.core.schema.UpdateCustomerNameAvroEvent;
-import com.zhigalko.core.service.KafkaProducer;
-import com.zhigalko.core.util.KafkaCustomProperties;
+import com.zhigalko.common.schema.UpdateCustomerNameAvroEvent;
+import com.zhigalko.common.service.KafkaProducer;
+import com.zhigalko.common.util.KafkaCustomProperties;
 import com.zhigalko.producer.command.UpdateCustomerNameCommand;
 import com.zhigalko.producer.handler.CommandHandler;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import static com.zhigalko.core.domain.EventType.UPDATE_CUSTOMER_NAME;
-import static com.zhigalko.core.util.Util.getCurrentDateTime;
+import static com.zhigalko.common.domain.EventType.UPDATE_CUSTOMER_NAME;
+import static com.zhigalko.common.util.Util.getCurrentDateTime;
 import static java.util.UUID.randomUUID;
 
 @Component

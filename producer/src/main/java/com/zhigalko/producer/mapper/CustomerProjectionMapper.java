@@ -1,7 +1,7 @@
 package com.zhigalko.producer.mapper;
 
-import com.zhigalko.core.domain.model.Customer;
-import com.zhigalko.core.projection.CustomerProjection;
+import com.zhigalko.common.domain.model.Customer;
+import com.zhigalko.common.projection.CustomerProjection;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

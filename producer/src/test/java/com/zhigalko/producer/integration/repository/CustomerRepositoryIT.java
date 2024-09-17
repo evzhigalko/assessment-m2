@@ -1,8 +1,8 @@
 package com.zhigalko.producer.integration.repository;
 
-import com.zhigalko.core.annotation.IT;
-import com.zhigalko.core.domain.model.Customer;
-import com.zhigalko.core.projection.CustomerProjection;
+import com.zhigalko.common.annotation.IT;
+import com.zhigalko.common.domain.model.Customer;
+import com.zhigalko.common.projection.CustomerProjection;
 import com.zhigalko.producer.repository.CustomerRepository;
 import java.util.Optional;
 import org.junit.jupiter.api.AfterEach;

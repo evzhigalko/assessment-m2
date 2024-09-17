@@ -2,8 +2,8 @@ package com.zhigalko.consumer.unit.mapper;
 
 import com.zhigalko.consumer.mapper.SnapshotMapper;
 import com.zhigalko.consumer.mapper.SnapshotMapperImpl;
-import com.zhigalko.core.domain.model.Snapshot;
-import com.zhigalko.core.event.CreateCustomerEvent;
+import com.zhigalko.common.domain.model.Snapshot;
+import com.zhigalko.common.event.CreateCustomerEvent;
 import org.junit.jupiter.api.Test;
 import static com.zhigalko.consumer.util.TestDataUtil.getCreateCustomerEvent;
 import static org.assertj.core.api.Assertions.assertThat;

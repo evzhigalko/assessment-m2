@@ -1,9 +1,9 @@
 package com.zhigalko.producer.service.impl;
 
-import com.zhigalko.core.domain.model.Customer;
-import com.zhigalko.core.exception.CustomerNotFoundException;
-import com.zhigalko.core.projection.CustomerProjection;
-import com.zhigalko.core.query.GetCustomerById;
+import com.zhigalko.common.domain.model.Customer;
+import com.zhigalko.common.exception.CustomerNotFoundException;
+import com.zhigalko.common.projection.CustomerProjection;
+import com.zhigalko.common.query.GetCustomerById;
 import com.zhigalko.producer.mapper.CustomerProjectionMapper;
 import com.zhigalko.producer.repository.CustomerRepository;
 import com.zhigalko.producer.service.CacheService;
@@ -13,8 +13,8 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import static com.zhigalko.core.util.Util.fromJsonToCustomerProjection;
-import static com.zhigalko.core.util.Util.toJson;
+import static com.zhigalko.common.util.Util.fromJsonToCustomerProjection;
+import static com.zhigalko.common.util.Util.toJson;
 import static com.zhigalko.producer.constants.CommonConstant.CACHE_KEY;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 

@@ -1,7 +1,7 @@
 package com.zhigalko.producer.unit.mapper;
 
-import com.zhigalko.core.domain.model.Customer;
-import com.zhigalko.core.projection.CustomerProjection;
+import com.zhigalko.common.domain.model.Customer;
+import com.zhigalko.common.projection.CustomerProjection;
 import com.zhigalko.producer.mapper.CustomerProjectionMapper;
 import com.zhigalko.producer.mapper.CustomerProjectionMapperImpl;
 import org.junit.jupiter.api.Test;

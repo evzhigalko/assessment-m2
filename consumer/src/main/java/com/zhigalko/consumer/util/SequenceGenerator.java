@@ -1,6 +1,6 @@
 package com.zhigalko.consumer.util;
 
-import com.zhigalko.core.event.Counter;
+import com.zhigalko.common.event.Counter;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.mongodb.core.MongoOperations;

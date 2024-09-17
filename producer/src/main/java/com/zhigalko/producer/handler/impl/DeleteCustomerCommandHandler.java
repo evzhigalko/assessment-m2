@@ -1,14 +1,14 @@
 package com.zhigalko.producer.handler.impl;
 
-import com.zhigalko.core.schema.DeleteCustomerAvroEvent;
-import com.zhigalko.core.service.KafkaProducer;
-import com.zhigalko.core.util.KafkaCustomProperties;
+import com.zhigalko.common.schema.DeleteCustomerAvroEvent;
+import com.zhigalko.common.service.KafkaProducer;
+import com.zhigalko.common.util.KafkaCustomProperties;
 import com.zhigalko.producer.command.DeleteCustomerCommand;
 import com.zhigalko.producer.handler.CommandHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import static com.zhigalko.core.domain.EventType.DELETE_CUSTOMER;
-import static com.zhigalko.core.util.Util.getCurrentDateTime;
+import static com.zhigalko.common.domain.EventType.DELETE_CUSTOMER;
+import static com.zhigalko.common.util.Util.getCurrentDateTime;
 import static java.util.UUID.randomUUID;
 
 @Component

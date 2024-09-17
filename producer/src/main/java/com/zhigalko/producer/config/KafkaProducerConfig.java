@@ -1,6 +1,6 @@
 package com.zhigalko.producer.config;
 
-import com.zhigalko.core.util.KafkaCustomProperties;
+import com.zhigalko.common.util.KafkaCustomProperties;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

@@ -1,6 +1,6 @@
 package com.zhigalko.consumer.repository;
 
-import com.zhigalko.core.domain.model.Snapshot;
+import com.zhigalko.common.domain.model.Snapshot;
 import java.util.Optional;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
