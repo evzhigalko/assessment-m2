@@ -13,11 +13,11 @@ GET http://localhost:9001/api/v1/customers/6
 Content-Type: application/json
 
 ### Delete a customer by ID
-DELETE http://localhost:9001/api/v1/customers/30
+DELETE http://localhost:9001/api/v1/customers/6
 Content-Type: application/json-patch+json
 
 ### Update customer name
-PATCH http://localhost:9001/api/v1/customers/6
+PATCH http://localhost:9001/api/v1/customers/5
 Content-Type: application/json-patch+json
 
 {
@@ -27,7 +27,7 @@ Content-Type: application/json-patch+json
 }
 
 ### Update customer address
-PATCH http://localhost:9001/api/v1/customers/6
+PATCH http://localhost:9001/api/v1/customers/5
 Content-Type: application/json-patch+json
 
 {

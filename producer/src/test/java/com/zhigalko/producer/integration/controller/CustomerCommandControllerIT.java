@@ -48,6 +48,7 @@ import static com.zhigalko.core.util.Util.toJson;
 import static com.zhigalko.producer.dto.patch.UpdateCustomerPatch.REPLACE_OP;
 import static com.zhigalko.producer.dto.patch.UpdateCustomerPatch.UPDATE_ADDRESS;
 import static com.zhigalko.producer.dto.patch.UpdateCustomerPatch.UPDATE_NAME;
+import static com.zhigalko.producer.integration.controller.CustomerCommandControllerIT.Config;
 import static com.zhigalko.producer.util.TestDataUtil.getCustomer;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
@@ -61,7 +62,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @IT
 @AutoConfigureMockMvc
-@Import({CustomerCommandControllerIT.Config.class})
+@Import({Config.class})
 class CustomerCommandControllerIT {
 	public static final String BASE_URI = "/api/v1/customers";
 	public static final UnaryOperator<String> URI = id -> BASE_URI + "/" + id;

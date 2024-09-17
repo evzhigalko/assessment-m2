@@ -43,13 +43,14 @@ import static com.zhigalko.core.domain.EventType.UPDATE_CUSTOMER_ADDRESS_VIEW;
 import static com.zhigalko.core.domain.EventType.UPDATE_CUSTOMER_NAME_VIEW;
 import static com.zhigalko.core.util.Util.fromJsonToCustomerProjection;
 import static com.zhigalko.producer.constants.CommonConstant.CACHE_KEY;
+import static com.zhigalko.producer.integration.listener.KafkaConsumerIT.Config;
 import static com.zhigalko.producer.util.TestDataUtil.getCustomer;
 import static com.zhigalko.producer.util.TestDataUtil.getCustomerViewAvroEvent;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.awaitility.Awaitility.await;
 
 @IT
-@Import({KafkaConsumerIT.Config.class})
+@Import({Config.class})
 public class KafkaConsumerIT {
 
 	private static final Network NETWORK = Network.newNetwork();
