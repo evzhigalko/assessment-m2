@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss} [%thread] %highlight(%-5level) %logger{36} - %msg%n" />
+    <property name="LOG_PATH" value="/home/anduser/dev/assessment/assessment-m2/logs/producer-service"/>
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>${LOG_PATTERN}</pattern>
@@ -9,10 +10,9 @@
 
     <appender name="FILE"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>/home/anduser/dev/assessment/assessment-m2/logs/producer-service/logfile.log</file>
-        <rollingPolicy
-                class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>logs/producer-service/%d{yyyy/MM/dd, aux}/logfile-%d{yyyy-MM-dd}.%i.log
+        <file>${LOG_PATH}/logfile.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/%d{yyyy/MM/dd, aux}/logfile-%d{yyyy-MM-dd}.%i.log
             </fileNamePattern>
             <maxFileSize>5MB</maxFileSize>
         </rollingPolicy>
