@@ -11,6 +11,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.kafka.support.Acknowledgment;
 import static com.zhigalko.producer.util.TestDataUtil.getCustomerViewAvroEvent;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.doNothing;
@@ -23,6 +24,9 @@ class KafkaConsumerTest {
 
 	@Mock
 	private CustomerProjector customerProjector;
+
+	@Mock
+	private Acknowledgment acknowledgment;
 
 	@BeforeEach
 	void setUp() {
@@ -42,12 +46,13 @@ class KafkaConsumerTest {
 
 		doNothing().when(customerProjector).project(kafkaRecord.value());
 
-		consumer.listenCustomerViewTopic(kafkaRecord);
+		consumer.listenCustomerViewTopic(kafkaRecord, acknowledgment);
+
 		ArgumentCaptor<CustomerViewAvroEvent> captor = ArgumentCaptor.forClass(CustomerViewAvroEvent.class);
 		verify(customerProjector).project(captor.capture());
-
 		CustomerViewAvroEvent capturedEvent = captor.getValue();
-
 		assertThat(capturedEvent).isEqualTo(event);
+
+		verify(acknowledgment).acknowledge();
 	}
 }

@@ -14,6 +14,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.kafka.support.Acknowledgment;
 import static com.zhigalko.consumer.util.TestDataUtil.getCreateCustomerAvroEvent;
 import static com.zhigalko.consumer.util.TestDataUtil.getDeleteCustomerAvroEvent;
 import static com.zhigalko.consumer.util.TestDataUtil.getUpdateCustomerAddressAvroEvent;
@@ -28,6 +29,9 @@ class KafkaConsumerTest {
 
 	@Mock
 	private EventService eventService;
+
+	@Mock
+	private Acknowledgment acknowledgment;
 
 	@BeforeEach
 	void setUp() {
@@ -46,14 +50,16 @@ class KafkaConsumerTest {
 		);
 
 		doNothing().when(eventService).createCustomer(kafkaRecord.value());
+		doNothing().when(acknowledgment).acknowledge();
 
-		consumer.listenCreateCustomerTopic(kafkaRecord);
+		consumer.listenCreateCustomerTopic(kafkaRecord, acknowledgment);
+
 		ArgumentCaptor<CreateCustomerAvroEvent> captor = ArgumentCaptor.forClass(CreateCustomerAvroEvent.class);
 		verify(eventService).createCustomer(captor.capture());
-
 		CreateCustomerAvroEvent capturedEvent = captor.getValue();
-
 		assertThat(capturedEvent).isEqualTo(event);
+
+		verify(acknowledgment).acknowledge();
 	}
 
 	@Test
@@ -68,14 +74,16 @@ class KafkaConsumerTest {
 		);
 
 		doNothing().when(eventService).updateCustomerName(kafkaRecord.value());
+		doNothing().when(acknowledgment).acknowledge();
 
-		consumer.listenUpdateCustomerNameTopic(kafkaRecord);
+		consumer.listenUpdateCustomerNameTopic(kafkaRecord, acknowledgment);
+
 		ArgumentCaptor<UpdateCustomerNameAvroEvent> captor = ArgumentCaptor.forClass(UpdateCustomerNameAvroEvent.class);
 		verify(eventService).updateCustomerName(captor.capture());
-
 		UpdateCustomerNameAvroEvent capturedEvent = captor.getValue();
-
 		assertThat(capturedEvent).isEqualTo(event);
+
+		verify(acknowledgment).acknowledge();
 	}
 
 	@Test
@@ -90,14 +98,16 @@ class KafkaConsumerTest {
 		);
 
 		doNothing().when(eventService).updateCustomerAddress(kafkaRecord.value());
+		doNothing().when(acknowledgment).acknowledge();
 
-		consumer.listenUpdateCustomerAddressTopic(kafkaRecord);
+		consumer.listenUpdateCustomerAddressTopic(kafkaRecord, acknowledgment);
+
 		ArgumentCaptor<UpdateCustomerAddressAvroEvent> captor = ArgumentCaptor.forClass(UpdateCustomerAddressAvroEvent.class);
 		verify(eventService).updateCustomerAddress(captor.capture());
-
 		UpdateCustomerAddressAvroEvent capturedEvent = captor.getValue();
-
 		assertThat(capturedEvent).isEqualTo(event);
+
+		verify(acknowledgment).acknowledge();
 	}
 
 	@Test
@@ -112,13 +122,15 @@ class KafkaConsumerTest {
 		);
 
 		doNothing().when(eventService).deleteCustomer(kafkaRecord.value());
+		doNothing().when(acknowledgment).acknowledge();
 
-		consumer.listenDeleteCustomerTopic(kafkaRecord);
+		consumer.listenDeleteCustomerTopic(kafkaRecord, acknowledgment);
+
 		ArgumentCaptor<DeleteCustomerAvroEvent> captor = ArgumentCaptor.forClass(DeleteCustomerAvroEvent.class);
 		verify(eventService).deleteCustomer(captor.capture());
-
 		DeleteCustomerAvroEvent capturedEvent = captor.getValue();
-
 		assertThat(capturedEvent).isEqualTo(event);
+
+		verify(acknowledgment).acknowledge();
 	}
 }
