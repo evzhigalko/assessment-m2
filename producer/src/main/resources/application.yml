@@ -17,7 +17,10 @@ spring:
     producer:
       keySerializer: org.apache.kafka.common.serialization.StringSerializer
       valueSerializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+      retries: 1
+      acks: all
       properties:
+
         schema:
           registry:
             url: http://127.0.0.1:8081
@@ -41,6 +44,9 @@ spring:
         specific:
           avro:
             reader: true
+      enable-auto-commit: false
+    listener:
+      ack-mode: MANUAL_IMMEDIATE
   jpa:
     open-in-view: false
 

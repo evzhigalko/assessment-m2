@@ -25,13 +25,18 @@ spring:
         specific:
           avro:
             reader: true
+      enable-auto-commit: false
     producer:
       keySerializer: org.apache.kafka.common.serialization.StringSerializer
       valueSerializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+      retries: 1
+      acks: all
       properties:
         schema:
           registry:
             url: http://localhost:8081
+    listener:
+      ack-mode: MANUAL_IMMEDIATE
 kafka:
   topics:
     create-customer-event:

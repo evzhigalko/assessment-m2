@@ -11,6 +11,8 @@ spring:
       authentication-database: admin
   kafka:
     bootstrap-servers: http://localhost:19092,http://localhost:29092
+    listener:
+      ack-mode: MANUAL_IMMEDIATE
     consumer:
       group-id: customersConsumer
       auto-offset-reset: earliest
@@ -31,9 +33,12 @@ spring:
         specific:
           avro:
             reader: true
+      enable-auto-commit: false
     producer:
       keySerializer: org.apache.kafka.common.serialization.StringSerializer
       valueSerializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+      retries: 1
+      acks: all
       properties:
         schema:
           registry:
