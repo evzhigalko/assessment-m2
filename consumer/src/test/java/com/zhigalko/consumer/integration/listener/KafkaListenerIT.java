@@ -1,9 +1,9 @@
 package com.zhigalko.consumer.integration.listener;
 
-import com.zhigalko.consumer.integration.config.KafkaTestConfig;
 import com.zhigalko.consumer.repository.EventRepository;
 import com.zhigalko.consumer.repository.SnapshotRepository;
 import com.zhigalko.core.annotation.IT;
+import com.zhigalko.core.config.KafkaProducerConfig;
 import com.zhigalko.core.domain.model.Snapshot;
 import com.zhigalko.core.event.CreateCustomerEvent;
 import com.zhigalko.core.event.DeleteCustomerEvent;
@@ -17,17 +17,26 @@ import com.zhigalko.core.schema.UpdateCustomerAddressAvroEvent;
 import com.zhigalko.core.schema.UpdateCustomerNameAvroEvent;
 import com.zhigalko.core.service.KafkaProducer;
 import com.zhigalko.core.util.KafkaCustomProperties;
+import io.confluent.kafka.serializers.KafkaAvroSerializerConfig;
+import jakarta.annotation.PostConstruct;
 import java.time.Duration;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
+import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Import;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
+import org.springframework.kafka.core.ConsumerFactory;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.GenericContainer;
@@ -52,7 +61,6 @@ import static org.assertj.core.api.Assertions.fail;
 import static org.awaitility.Awaitility.await;
 
 @IT
-@Import({KafkaTestConfig.class})
 public class KafkaListenerIT {
 	private static final Network NETWORK = Network.newNetwork();
 	public static final Duration POLL_INTERVAL = Duration.ofSeconds(3);
@@ -301,5 +309,26 @@ public class KafkaListenerIT {
 	void tearDown() {
 		eventRepository.deleteAll();
 		snapshotRepository.deleteAll();
+	}
+
+	@TestConfiguration
+	@RequiredArgsConstructor
+	@Import({KafkaProducerConfig.class})
+	static class Config {
+		private final ConcurrentKafkaListenerContainerFactory<String, Object> containerFactory;
+		private final KafkaTemplate<String, Object> kafkaTemplate;
+
+		@PostConstruct
+		void initialize() {
+			String schemaRegistryUrl = "http://" + SCHEMA_REGISTRY.getHost() + ":" + SCHEMA_REGISTRY.getFirstMappedPort();
+			ProducerFactory<String, Object> producerFactory = kafkaTemplate.getProducerFactory();
+			final Map<String, Object> producerProps = new HashMap<>();
+			producerProps.put(KafkaAvroSerializerConfig.SCHEMA_REGISTRY_URL_CONFIG, schemaRegistryUrl);
+			producerFactory.updateConfigs(producerProps);
+			ConsumerFactory<? super String, ? super Object> consumerFactory = containerFactory.getConsumerFactory();
+			final Map<String, Object> consumerProps = new HashMap<>();
+			consumerProps.put(KafkaAvroSerializerConfig.SCHEMA_REGISTRY_URL_CONFIG, schemaRegistryUrl);
+			consumerFactory.updateConfigs(consumerProps);
+		}
 	}
 }
