@@ -69,4 +69,4 @@ kafka:
       replicationFactor: 2
 
 logging:
-  config: /home/anduser/dev/assessment/assessment-m2/consumer/src/main/resources/logback.xml
+  config: classpath:logback.xml

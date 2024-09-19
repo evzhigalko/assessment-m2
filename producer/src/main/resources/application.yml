@@ -20,10 +20,9 @@ spring:
       retries: 1
       acks: all
       properties:
-
         schema:
           registry:
-            url: http://127.0.0.1:8081
+            url: http://localhost:8081
     consumer:
       group-id: customerViewConsumer
       auto-offset-reset: earliest
@@ -79,4 +78,4 @@ redis:
     cache-name: customers
 
 logging:
-  config: /home/anduser/dev/assessment/assessment-m2/producer/src/main/resources/logback.xml
+  config: classpath:logback.xml
