@@ -11,12 +11,8 @@ Content-Type: application/json
 GET http://localhost:9001/api/v1/customers/1
 Content-Type: application/json
 
-### Delete a customer by ID
-DELETE http://localhost:9001/api/v1/customers/6
-Content-Type: application/json-patch+json
-
 ### Update customer name
-PATCH http://localhost:9001/api/v1/customers/5
+PATCH http://localhost:9001/api/v1/customers/1
 Content-Type: application/json-patch+json
 
 {
@@ -26,7 +22,7 @@ Content-Type: application/json-patch+json
 }
 
 ### Update customer address
-PATCH http://localhost:9001/api/v1/customers/5
+PATCH http://localhost:9001/api/v1/customers/1
 Content-Type: application/json-patch+json
 
 {
@@ -34,3 +30,7 @@ Content-Type: application/json-patch+json
   "op": "replace",
   "value": "London"
 }
+
+### Delete a customer by ID
+DELETE http://localhost:9001/api/v1/customers/1
+Content-Type: application/json-patch+json

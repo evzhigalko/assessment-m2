@@ -1,4 +1,42 @@
 services:
+  producer:
+    build:
+      dockerfile: producer.Dockerfile
+    ports:
+      - 9001:9001
+    networks:
+      - personal
+    depends_on:
+      - kafka-ui
+      - mongodb
+      - redis
+    environment:
+      SPRING_KAFKA_PRODUCER_PROPERTIES_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+      SPRING_KAFKA_CONSUMER_PROPERTIES_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092
+      SPRING_DATA_MONGODB_URI: mongodb://admin:password@mongodb:27017/admin?authSource=admin
+      SPRING_DATA_MONGODB_DATABASE: customers
+      SPRING_DATA_REDIS_HOST: redis
+    volumes:
+      - producer-data:/var/lib/producer/data
+
+  consumer:
+    build:
+      dockerfile: consumer.Dockerfile
+    ports:
+      - 9002:9002
+    networks:
+      - personal
+    depends_on:
+      - producer
+    environment:
+      SPRING_KAFKA_CONSUMER_PROPERTIES_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+      SPRING_KAFKA_PRODUCER_PROPERTIES_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092
+      SPRING_DATA_MONGODB_URI: mongodb://admin:password@mongodb:27017/admin?authSource=admin
+      SPRING_DATA_MONGODB_DATABASE: events
+    volumes:
+      - consumer-data:/var/lib/consumer/data
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
     container_name: zookeeper
@@ -6,11 +44,51 @@ services:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
     ports:
-      - "2181:2181"
+      - 2181:2181
     networks:
-      - kafka-network
+      - personal
     volumes:
       - zookeeper-data:/var/lib/zookeeper/data:Z
+
+  kafka1:
+    image: confluentinc/cp-kafka:latest
+    hostname: kafka1
+    container_name: kafka1
+    ports:
+      - 19092:19092
+    depends_on:
+      - zookeeper
+    restart: always
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka1:9092,PLAINTEXT_INTERNAL://localhost:19092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 2
+    networks:
+      - personal
+    volumes:
+      - kafka1-data:/var/lib/kafka1/data:Z
+
+  kafka2:
+    image: confluentinc/cp-kafka:latest
+    hostname: kafka2
+    container_name: kafka2
+    restart: always
+    ports:
+      - 29092:29092
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 2
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka2:9092,PLAINTEXT_INTERNAL://localhost:29092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 2
+    networks:
+      - personal
+    volumes:
+      - kafka2-data:/var/lib/kafka2/data:Z
 
   schema-registry:
     image: confluentinc/cp-schema-registry:latest
@@ -20,56 +98,19 @@ services:
     depends_on:
       - kafka1
       - kafka2
+      - zookeeper
     ports:
-      - "8081:8081"
+      - 8081:8081
     environment:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
-      SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: 'zookeeper:2181'
+      SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: zookeeper:2181
       SCHEMA_REGISTRY_LISTENERS: http://schema-registry:8081
-      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: PLAINTEXT://kafka2:9092,PLAINTEXT_INTERNAL://localhost:29092
+      SCHEMA_REGISTRY_KAFKASTORE_TOPIC: _schemas_new
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: PLAINTEXT://kafka2:9092,PLAINTEXT_INTERNAL://localhost:29092,PLAINTEXT://kafka1:9092,PLAINTEXT_INTERNAL://localhost:19092
     networks:
-      - kafka-network
+      - personal
     volumes:
       - schema-registry-data:/var/lib/schema-registry/data:Z
-
-  kafka1:
-    image: confluentinc/cp-kafka:latest
-    hostname: kafka1
-    container_name: kafka1
-    ports:
-      - "19092:19092"
-    depends_on:
-      - zookeeper
-    restart: always
-    environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka1:9092,PLAINTEXT_INTERNAL://localhost:19092
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 2
-    networks:
-      - kafka-network
-    volumes:
-      - kafka1-data:/var/lib/kafka1/data:Z
-  kafka2:
-    image: confluentinc/cp-kafka:latest
-    hostname: kafka2
-    container_name: kafka2
-    restart: always
-    ports:
-      - "29092:29092"
-    depends_on:
-      - zookeeper
-    environment:
-      KAFKA_BROKER_ID: 2
-      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka2:9092,PLAINTEXT_INTERNAL://localhost:29092
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 2
-    networks:
-      - kafka-network
-    volumes:
-      - kafka2-data:/var/lib/kafka2/data:Z
 
   kafka-ui:
     container_name: kafka-ui
@@ -82,12 +123,12 @@ services:
       - zookeeper
       - schema-registry
     environment:
-      - KAFKA_CLUSTERS_0_NAME=kafka-cluster
-      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka1:9092,kafka2:9092
-      - KAFKA_CLUSTERS_0_ZOOKEEPER=http://zookeeper:2181
-      - KAFKA_CLUSTERS_0_SCHEMAREGISTRY=http://schema-registry:8081
+      KAFKA_CLUSTERS_0_NAME: kafka-cluster
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka1:9092,kafka2:9092
+      KAFKA_CLUSTERS_0_ZOOKEEPER: http://zookeeper:2181
+      KAFKA_CLUSTERS_0_SCHEMAREGISTRY: http://schema-registry:8081
     networks:
-      - kafka-network
+      - personal
   mongodb:
     image: mongo:latest
     container_name: mongodb
@@ -95,11 +136,11 @@ services:
     env_file:
       - compose.env
     ports:
-      - "27017:27017"
+      - 27017:27017
     volumes:
       - mongo-data:/var/lib/mongodb/data
     networks:
-      - kafka-network
+      - personal
 
   redis:
     image: redis:latest
@@ -108,12 +149,12 @@ services:
     ports:
       - 6379:6379
     networks:
-      - kafka-network
+      - personal
     volumes:
       - redis-data:/var/lib/redis/data
 
 networks:
-  kafka-network:
+  personal:
     driver: bridge
 volumes:
   zookeeper-data:
@@ -122,3 +163,5 @@ volumes:
   schema-registry-data:
   mongo-data:
   redis-data:
+  producer-data:
+  consumer-data:
