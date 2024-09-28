@@ -1,4 +1,4 @@
-package com.zhigalko.producer.integration.listener.config;
+package com.zhigalko.producer.integration.config;
 
 import io.confluent.kafka.serializers.KafkaAvroSerializerConfig;
 import java.util.Map;
@@ -12,7 +12,7 @@ import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
-import static com.zhigalko.producer.integration.listener.KafkaConsumerIT.SCHEMA_REGISTRY;
+import static com.zhigalko.producer.integration.KafkaIntegrationTest.SCHEMA_REGISTRY;
 
 @TestConfiguration
 @RequiredArgsConstructor

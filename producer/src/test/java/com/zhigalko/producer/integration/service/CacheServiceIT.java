@@ -28,7 +28,7 @@ public class CacheServiceIT extends BaseIntegrationTest {
 	public static final RedisContainer REDIS_CONTAINER = new RedisContainer(DockerImageName.parse("redis:latest"));
 
 	@DynamicPropertySource
-	private static void registerKafkaAndMongoProperties(DynamicPropertyRegistry registry) {
+	private static void registerRedisProperties(DynamicPropertyRegistry registry) {
 		registry.add("spring.data.redis.host", REDIS_CONTAINER::getHost);
 		registry.add("spring.data.redis.port", REDIS_CONTAINER::getFirstMappedPort);
 	}

@@ -29,8 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @AutoConfigureMockMvc
 class CustomerQueryControllerIT extends BaseIntegrationTest {
-	public static final String GET_QUERY_URI = "/api/v1/customers/";
-	private static final Network NETWORK = Network.newNetwork();
+	private static final String GET_QUERY_URI = "/api/v1/customers/";
 
 	@Container
 	private static final MongoDBContainer MONGO_DB_CONTAINER = new MongoDBContainer(DockerImageName.parse("mongo:latest"))

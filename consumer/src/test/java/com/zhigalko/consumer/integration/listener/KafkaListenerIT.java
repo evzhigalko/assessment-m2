@@ -65,9 +65,9 @@ import static org.mockito.Mockito.doThrow;
 @ActiveProfiles("test")
 @Import(KafkaTestConfig.class)
 public class KafkaListenerIT {
-	private static final Network NETWORK = Network.newNetwork();
 	public static final Duration POLL_INTERVAL = Duration.ofSeconds(3);
 	public static final Duration MAX_DURATION = Duration.ofSeconds(25);
+	private static final Network NETWORK = Network.newNetwork();
 
 	@Container
 	public static final KafkaContainer KAFKA_CONTAINER = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:latest"))
