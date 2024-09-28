@@ -40,7 +40,7 @@ public class CustomerQueryServiceImpl implements CustomerQueryService {
 		CustomerProjection customerProjection = customerRepository.findByCustomerId(customerId)
 				.orElseThrow(CustomerNotFoundException::new);
 		cacheService.save(key, toJson(customerProjection));
-		log.info("Saved in cached value: {}", customerProjection);
+		logSavedInCachedProjection(customerProjection);
 		return customerProjection;
 	}
 
@@ -52,7 +52,7 @@ public class CustomerQueryServiceImpl implements CustomerQueryService {
 		CustomerProjection customerProjection = customerProjectionMapper.toCustomerProjection(customer);
 		String key = CACHE_KEY.apply(String.valueOf(customerProjection.id()));
 		cacheService.save(key, toJson(customerProjection));
-		log.info("Saved in cached value: {}", customerProjection);
+		logSavedInCachedProjection(customerProjection);
 	}
 
 	@Override
@@ -62,5 +62,9 @@ public class CustomerQueryServiceImpl implements CustomerQueryService {
 		log.info("Customer projection was removed: id - {}", customerId);
 		cacheService.delete(CACHE_KEY.apply(String.valueOf(customerId)));
 		log.info("Customer projection was removed from cache: id - {}", customerId);
+	}
+
+	private void logSavedInCachedProjection(CustomerProjection customerProjection) {
+		log.info("Saved in cached value: {}", customerProjection);
 	}
 }
