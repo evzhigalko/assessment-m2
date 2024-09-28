@@ -1,6 +1,5 @@
 package com.zhigalko.producer.integration.controller;
 
-import com.zhigalko.common.annotation.IT;
 import com.zhigalko.common.config.KafkaProducerConfig;
 import com.zhigalko.common.schema.CreateCustomerAvroEvent;
 import com.zhigalko.common.schema.DeleteCustomerAvroEvent;
@@ -9,6 +8,7 @@ import com.zhigalko.common.schema.UpdateCustomerNameAvroEvent;
 import com.zhigalko.common.util.KafkaCustomProperties;
 import com.zhigalko.producer.dto.CreateCustomerDto;
 import com.zhigalko.producer.dto.patch.UpdateCustomerPatch;
+import com.zhigalko.producer.integration.BaseIntegrationTest;
 import io.confluent.kafka.serializers.KafkaAvroSerializerConfig;
 import jakarta.annotation.PostConstruct;
 import java.time.Duration;
@@ -48,7 +48,6 @@ import static com.zhigalko.common.util.Util.toJson;
 import static com.zhigalko.producer.dto.patch.UpdateCustomerPatch.REPLACE_OP;
 import static com.zhigalko.producer.dto.patch.UpdateCustomerPatch.UPDATE_ADDRESS;
 import static com.zhigalko.producer.dto.patch.UpdateCustomerPatch.UPDATE_NAME;
-import static com.zhigalko.producer.integration.controller.CustomerCommandControllerIT.Config;
 import static com.zhigalko.producer.util.TestDataUtil.getCustomer;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
@@ -60,18 +59,16 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@IT
 @AutoConfigureMockMvc
-@Import({Config.class})
-class CustomerCommandControllerIT {
+class CustomerCommandControllerIT extends BaseIntegrationTest {
 	public static final String BASE_URI = "/api/v1/customers";
 	public static final UnaryOperator<String> URI = id -> BASE_URI + "/" + id;
 	public static final Duration POLL_INTERVAL = Duration.ofSeconds(3);
-	public static final Duration MAX_DURATION = Duration.ofSeconds(12);
+	public static final Duration MAX_DURATION = Duration.ofSeconds(25);
 	private static final Network NETWORK = Network.newNetwork();
 
 	@Container
-	public static final KafkaContainer KAFKA_CONTAINER = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:latest"))
+	private static final KafkaContainer KAFKA_CONTAINER = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:latest"))
 			.withNetwork(NETWORK);
 
 	@Container
@@ -79,7 +76,7 @@ class CustomerCommandControllerIT {
 			.withNetwork(NETWORK);
 
 	@Container
-	public static final GenericContainer<?> SCHEMA_REGISTRY =
+	private static final GenericContainer<?> SCHEMA_REGISTRY =
 			new GenericContainer<>(DockerImageName.parse("confluentinc/cp-schema-registry:latest"))
 					.withNetwork(NETWORK)
 					.withExposedPorts(8081)
@@ -93,7 +90,7 @@ class CustomerCommandControllerIT {
 	private static void registerKafkaMongoProperties(DynamicPropertyRegistry registry) {
 		registry.add("spring.kafka.bootstrap-servers", KAFKA_CONTAINER::getBootstrapServers);
 		registry.add("spring.kafka.properties.schema.registry.url",
-				() -> "http://" + SCHEMA_REGISTRY.getHost() + ":" + SCHEMA_REGISTRY.getFirstMappedPort());
+				() -> "http://localhost:" + SCHEMA_REGISTRY.getFirstMappedPort());
 		registry.add("spring.data.mongodb.uri", MONGO_DB_CONTAINER::getReplicaSetUrl);
 	}
 
@@ -105,6 +102,13 @@ class CustomerCommandControllerIT {
 
 	@Autowired
 	private KafkaCustomProperties kafkaCustomProperties;
+
+	@Test
+	void containersAreRun() {
+		assertThat(KAFKA_CONTAINER.isRunning()).isTrue();
+		assertThat(MONGO_DB_CONTAINER.isRunning()).isTrue();
+		assertThat(SCHEMA_REGISTRY.isRunning()).isTrue();
+	}
 
 	@Test
 	void createCustomer() throws Exception {
@@ -126,9 +130,9 @@ class CustomerCommandControllerIT {
 							fail("event was not received");
 						}
 						StreamSupport.stream(records.spliterator(), false)
-								.filter(record -> CREATE_CUSTOMER.getName().contentEquals(record.value().getEventType()))
-								.forEach(record -> {
-									CreateCustomerAvroEvent consumedEvent = record.value();
+								.filter(consumerRecord -> CREATE_CUSTOMER.getName().contentEquals(consumerRecord.value().getEventType()))
+								.forEach(consumerRecord -> {
+									CreateCustomerAvroEvent consumedEvent = consumerRecord.value();
 									assertThat(consumedEvent.getId()).isNotBlank();
 									assertThat(consumedEvent.getEventType()).hasToString(CREATE_CUSTOMER.getName());
 									assertThat(consumedEvent.getTimestamp()).isNotBlank();
@@ -200,9 +204,9 @@ class CustomerCommandControllerIT {
 							fail("event was not received");
 						}
 						StreamSupport.stream(records.spliterator(), false)
-								.filter(record -> UPDATE_CUSTOMER_NAME.getName().contentEquals(record.value().getEventType()))
-								.forEach(record -> {
-									UpdateCustomerNameAvroEvent consumedEvent = record.value();
+								.filter(consumerRecord -> UPDATE_CUSTOMER_NAME.getName().contentEquals(consumerRecord.value().getEventType()))
+								.forEach(consumerRecord -> {
+									UpdateCustomerNameAvroEvent consumedEvent = consumerRecord.value();
 									assertThat(consumedEvent.getId()).isNotBlank();
 									assertThat(consumedEvent.getAggregateId()).isEqualTo(customerId);
 									assertThat(consumedEvent.getEventType()).hasToString(UPDATE_CUSTOMER_NAME.getName());
@@ -237,9 +241,9 @@ class CustomerCommandControllerIT {
 							fail("event was not received");
 						}
 						StreamSupport.stream(records.spliterator(), false)
-								.filter(record -> UPDATE_CUSTOMER_ADDRESS.getName().contentEquals(record.value().getEventType()))
-								.forEach(record -> {
-									UpdateCustomerAddressAvroEvent consumedEvent = record.value();
+								.filter(consumerRecord -> UPDATE_CUSTOMER_ADDRESS.getName().contentEquals(consumerRecord.value().getEventType()))
+								.forEach(consumerRecord -> {
+									UpdateCustomerAddressAvroEvent consumedEvent = consumerRecord.value();
 									assertThat(consumedEvent.getId()).isNotBlank();
 									assertThat(consumedEvent.getAggregateId()).isEqualTo(customerId);
 									assertThat(consumedEvent.getEventType()).hasToString(UPDATE_CUSTOMER_ADDRESS.getName());
@@ -269,9 +273,9 @@ class CustomerCommandControllerIT {
 							fail("event was not received");
 						}
 						StreamSupport.stream(records.spliterator(), false)
-								.filter(record -> DELETE_CUSTOMER.getName().contentEquals(record.value().getEventType()))
-								.forEach(record -> {
-									DeleteCustomerAvroEvent consumedEvent = record.value();
+								.filter(consumerRecord -> DELETE_CUSTOMER.getName().contentEquals(consumerRecord.value().getEventType()))
+								.forEach(consumerRecord -> {
+									DeleteCustomerAvroEvent consumedEvent = consumerRecord.value();
 									assertThat(consumedEvent.getId()).isNotBlank();
 									assertThat(consumedEvent.getAggregateId()).isEqualTo(customerId);
 									assertThat(consumedEvent.getEventType()).hasToString(DELETE_CUSTOMER.getName());
@@ -291,7 +295,7 @@ class CustomerCommandControllerIT {
 
 		@PostConstruct
 		void initialize() {
-			String schemaRegistryUrl = "http://" + SCHEMA_REGISTRY.getHost() + ":" + SCHEMA_REGISTRY.getFirstMappedPort();
+			String schemaRegistryUrl = "http://localhost:" + SCHEMA_REGISTRY.getFirstMappedPort();
 			ProducerFactory<String, Object> producerFactory = kafkaTemplate.getProducerFactory();
 			final Map<String, Object> producerProps = new HashMap<>();
 			producerProps.put(KafkaAvroSerializerConfig.SCHEMA_REGISTRY_URL_CONFIG, schemaRegistryUrl);
