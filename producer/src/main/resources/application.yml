@@ -29,6 +29,7 @@ spring:
       key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
       properties:
+        allow.auto.create.topics: false
         spring:
           deserializer:
             key:
@@ -69,6 +70,10 @@ kafka:
       replicationFactor: 2
     delete-customer-event:
       name: DeleteCustomerEventTopic
+      partitions: 1
+      replicationFactor: 2
+    events-dlt:
+      name: EventsDeadLetterTopic
       partitions: 1
       replicationFactor: 2
 
