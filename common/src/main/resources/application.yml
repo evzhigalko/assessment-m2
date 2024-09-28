@@ -11,6 +11,7 @@ spring:
       keyDeserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
       valueDeserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
       properties:
+        allow.auto.create.topics: false
         spring:
           deserializer:
             key:

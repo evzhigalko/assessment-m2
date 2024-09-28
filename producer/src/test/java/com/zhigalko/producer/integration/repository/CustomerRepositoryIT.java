@@ -1,8 +1,8 @@
 package com.zhigalko.producer.integration.repository;
 
-import com.zhigalko.common.annotation.IT;
 import com.zhigalko.common.domain.model.Customer;
 import com.zhigalko.common.projection.CustomerProjection;
+import com.zhigalko.producer.integration.BaseIntegrationTest;
 import com.zhigalko.producer.repository.CustomerRepository;
 import java.util.Optional;
 import org.junit.jupiter.api.AfterEach;
@@ -16,19 +16,23 @@ import org.testcontainers.utility.DockerImageName;
 import static com.zhigalko.producer.util.TestDataUtil.getCustomer;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@IT
-class CustomerRepositoryIT {
+class CustomerRepositoryIT extends BaseIntegrationTest {
 
 	@Container
 	private static final MongoDBContainer MONGO_DB_CONTAINER = new MongoDBContainer(DockerImageName.parse("mongo:latest"));
 
 	@DynamicPropertySource
-	private static void registerKafkaAndMongoProperties(DynamicPropertyRegistry registry) {
+	private static void registerMongoProperties(DynamicPropertyRegistry registry) {
 		registry.add("spring.data.mongodb.uri", MONGO_DB_CONTAINER::getReplicaSetUrl);
 	}
 
 	@Autowired
 	private CustomerRepository customerRepository;
+
+	@Test
+	void containersAreRun() {
+		assertThat(MONGO_DB_CONTAINER.isRunning()).isTrue();
+	}
 
 	@Test
 	void findByCustomerId() {

@@ -1,10 +1,5 @@
 package com.zhigalko.consumer.service.impl;
 
-import com.zhigalko.consumer.mapper.EventMapper;
-import com.zhigalko.consumer.repository.EventRepository;
-import com.zhigalko.consumer.service.EventService;
-import com.zhigalko.consumer.service.SnapshotService;
-import com.zhigalko.consumer.util.SequenceGenerator;
 import com.zhigalko.common.domain.model.Snapshot;
 import com.zhigalko.common.event.CreateCustomerEvent;
 import com.zhigalko.common.event.DeleteCustomerEvent;
@@ -18,6 +13,11 @@ import com.zhigalko.common.schema.UpdateCustomerAddressAvroEvent;
 import com.zhigalko.common.schema.UpdateCustomerNameAvroEvent;
 import com.zhigalko.common.service.KafkaProducer;
 import com.zhigalko.common.util.KafkaCustomProperties;
+import com.zhigalko.consumer.mapper.EventMapper;
+import com.zhigalko.consumer.repository.EventRepository;
+import com.zhigalko.consumer.service.EventService;
+import com.zhigalko.consumer.service.SnapshotService;
+import com.zhigalko.consumer.util.SequenceGenerator;
 import java.time.Instant;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

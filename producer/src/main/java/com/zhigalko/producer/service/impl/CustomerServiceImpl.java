@@ -1,5 +1,6 @@
 package com.zhigalko.producer.service.impl;
 
+import com.zhigalko.producer.command.Command;
 import com.zhigalko.producer.command.CreateCustomerCommand;
 import com.zhigalko.producer.command.DeleteCustomerCommand;
 import com.zhigalko.producer.command.UpdateCustomerAddressCommand;
@@ -23,7 +24,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void createCustomer(CreateCustomerDto createCustomerDto) {
 		CreateCustomerCommand createCustomerCommand = new CreateCustomerCommand(createCustomerDto.name(), createCustomerDto.address());
-		log.info(RECEIVED_COMMAND_LOG_MESSAGE, createCustomerCommand);
+		logReceivedCommand(createCustomerCommand);
 		commandHandlerDispatcher.dispatch(createCustomerCommand);
 	}
 
@@ -40,19 +41,23 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void deleteCustomer(Long customerId) {
 		DeleteCustomerCommand deleteCustomerCommand = new DeleteCustomerCommand(customerId);
-		log.info(RECEIVED_COMMAND_LOG_MESSAGE, deleteCustomerCommand);
+		logReceivedCommand(deleteCustomerCommand);
 		commandHandlerDispatcher.dispatch(deleteCustomerCommand);
 	}
 
 	private void updateCustomerName(Long customerId, String name) {
 		UpdateCustomerNameCommand updateCustomerNameCommand = new UpdateCustomerNameCommand(customerId, name);
-		log.info(RECEIVED_COMMAND_LOG_MESSAGE, updateCustomerNameCommand);
+		logReceivedCommand(updateCustomerNameCommand);
 		commandHandlerDispatcher.dispatch(updateCustomerNameCommand);
 	}
 
 	private void updateCustomerAddress(Long customerId, String address) {
 		UpdateCustomerAddressCommand updateCustomerAddressCommand = new UpdateCustomerAddressCommand(customerId, address);
-		log.info(RECEIVED_COMMAND_LOG_MESSAGE, updateCustomerAddressCommand);
+		logReceivedCommand(updateCustomerAddressCommand);
 		commandHandlerDispatcher.dispatch(updateCustomerAddressCommand);
+	}
+
+	private void logReceivedCommand(Command command) {
+		log.info(RECEIVED_COMMAND_LOG_MESSAGE, command);
 	}
 }

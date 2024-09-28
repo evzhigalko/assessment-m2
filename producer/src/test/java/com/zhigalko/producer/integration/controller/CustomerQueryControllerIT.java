@@ -1,11 +1,11 @@
 package com.zhigalko.producer.integration.controller;
 
 import com.redis.testcontainers.RedisContainer;
-import com.zhigalko.common.annotation.IT;
 import com.zhigalko.common.domain.model.Customer;
 import com.zhigalko.common.projection.CustomerProjection;
 import com.zhigalko.common.query.GetCustomerById;
 import com.zhigalko.common.util.Util;
+import com.zhigalko.producer.integration.BaseIntegrationTest;
 import com.zhigalko.producer.service.CacheService;
 import com.zhigalko.producer.service.CustomerQueryService;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +16,6 @@ import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.testcontainers.containers.MongoDBContainer;
-import org.testcontainers.containers.Network;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.utility.DockerImageName;
 import static com.zhigalko.producer.constants.CommonConstant.CACHE_KEY;
@@ -27,11 +26,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@IT
 @AutoConfigureMockMvc
-class CustomerQueryControllerIT {
-	public static final String GET_QUERY_URI = "/api/v1/customers/";
-	private static final Network NETWORK = Network.newNetwork();
+class CustomerQueryControllerIT extends BaseIntegrationTest {
+	private static final String GET_QUERY_URI = "/api/v1/customers/";
 
 	@Container
 	private static final MongoDBContainer MONGO_DB_CONTAINER = new MongoDBContainer(DockerImageName.parse("mongo:latest"))
@@ -63,6 +60,12 @@ class CustomerQueryControllerIT {
 	void setUp() {
 		customer = getCustomer();
 		customerQueryService.saveCustomerProjection(customer);
+	}
+
+	@Test
+	void containersAreRun() {
+		assertThat(MONGO_DB_CONTAINER.isRunning()).isTrue();
+		assertThat(REDIS_CONTAINER.isRunning()).isTrue();
 	}
 
 	@Test
