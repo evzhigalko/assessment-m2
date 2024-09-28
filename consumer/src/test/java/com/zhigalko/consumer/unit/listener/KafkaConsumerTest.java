@@ -1,6 +1,7 @@
 package com.zhigalko.consumer.unit.listener;
 
 import com.zhigalko.consumer.listener.KafkaConsumer;
+import com.zhigalko.consumer.service.ErrorEventService;
 import com.zhigalko.consumer.service.EventService;
 import com.zhigalko.common.schema.CreateCustomerAvroEvent;
 import com.zhigalko.common.schema.DeleteCustomerAvroEvent;
@@ -31,11 +32,14 @@ class KafkaConsumerTest {
 	private EventService eventService;
 
 	@Mock
+	private ErrorEventService errorEventService;
+
+	@Mock
 	private Acknowledgment acknowledgment;
 
 	@BeforeEach
 	void setUp() {
-		consumer = new KafkaConsumer(eventService);
+		consumer = new KafkaConsumer(eventService, errorEventService);
 	}
 
 	@Test
@@ -52,7 +56,7 @@ class KafkaConsumerTest {
 		doNothing().when(eventService).createCustomer(kafkaRecord.value());
 		doNothing().when(acknowledgment).acknowledge();
 
-		consumer.listenCreateCustomerTopic(kafkaRecord, acknowledgment);
+		consumer.listenCreateCustomerTopic(kafkaRecord, "create-customer-topic", acknowledgment);
 
 		ArgumentCaptor<CreateCustomerAvroEvent> captor = ArgumentCaptor.forClass(CreateCustomerAvroEvent.class);
 		verify(eventService).createCustomer(captor.capture());
@@ -76,7 +80,7 @@ class KafkaConsumerTest {
 		doNothing().when(eventService).updateCustomerName(kafkaRecord.value());
 		doNothing().when(acknowledgment).acknowledge();
 
-		consumer.listenUpdateCustomerNameTopic(kafkaRecord, acknowledgment);
+		consumer.listenUpdateCustomerNameTopic(kafkaRecord, "update-customer-name-topic", acknowledgment);
 
 		ArgumentCaptor<UpdateCustomerNameAvroEvent> captor = ArgumentCaptor.forClass(UpdateCustomerNameAvroEvent.class);
 		verify(eventService).updateCustomerName(captor.capture());
@@ -100,7 +104,7 @@ class KafkaConsumerTest {
 		doNothing().when(eventService).updateCustomerAddress(kafkaRecord.value());
 		doNothing().when(acknowledgment).acknowledge();
 
-		consumer.listenUpdateCustomerAddressTopic(kafkaRecord, acknowledgment);
+		consumer.listenUpdateCustomerAddressTopic(kafkaRecord, "update-customer-address-topic", acknowledgment);
 
 		ArgumentCaptor<UpdateCustomerAddressAvroEvent> captor = ArgumentCaptor.forClass(UpdateCustomerAddressAvroEvent.class);
 		verify(eventService).updateCustomerAddress(captor.capture());
@@ -124,7 +128,7 @@ class KafkaConsumerTest {
 		doNothing().when(eventService).deleteCustomer(kafkaRecord.value());
 		doNothing().when(acknowledgment).acknowledge();
 
-		consumer.listenDeleteCustomerTopic(kafkaRecord, acknowledgment);
+		consumer.listenDeleteCustomerTopic(kafkaRecord, "delete-customer-topic", acknowledgment);
 
 		ArgumentCaptor<DeleteCustomerAvroEvent> captor = ArgumentCaptor.forClass(DeleteCustomerAvroEvent.class);
 		verify(eventService).deleteCustomer(captor.capture());

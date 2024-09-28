@@ -56,7 +56,7 @@ public class TestDataUtil {
 				"Alex",
 				"New York",
 				Instant.now().toString(),
-				CREATE_CUSTOMER_VIEW.getName()
+				CREATE_CUSTOMER.getName()
 		);
 	}
 

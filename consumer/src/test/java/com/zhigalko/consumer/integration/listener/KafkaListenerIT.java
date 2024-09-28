@@ -1,12 +1,9 @@
 package com.zhigalko.consumer.integration.listener;
 
-import com.zhigalko.consumer.repository.EventRepository;
-import com.zhigalko.consumer.repository.SnapshotRepository;
-import com.zhigalko.common.annotation.IT;
-import com.zhigalko.common.config.KafkaProducerConfig;
 import com.zhigalko.common.domain.model.Snapshot;
 import com.zhigalko.common.event.CreateCustomerEvent;
 import com.zhigalko.common.event.DeleteCustomerEvent;
+import com.zhigalko.common.event.ErrorEvent;
 import com.zhigalko.common.event.Event;
 import com.zhigalko.common.event.UpdateCustomerAddressEvent;
 import com.zhigalko.common.event.UpdateCustomerNameEvent;
@@ -17,26 +14,25 @@ import com.zhigalko.common.schema.UpdateCustomerAddressAvroEvent;
 import com.zhigalko.common.schema.UpdateCustomerNameAvroEvent;
 import com.zhigalko.common.service.KafkaProducer;
 import com.zhigalko.common.util.KafkaCustomProperties;
-import io.confluent.kafka.serializers.KafkaAvroSerializerConfig;
-import jakarta.annotation.PostConstruct;
+import com.zhigalko.consumer.integration.listener.config.KafkaTestConfig;
+import com.zhigalko.consumer.repository.ErrorEventRepository;
+import com.zhigalko.consumer.repository.EventRepository;
+import com.zhigalko.consumer.repository.SnapshotRepository;
+import com.zhigalko.consumer.service.EventService;
 import java.time.Duration;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
-import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
-import org.springframework.kafka.core.ConsumerFactory;
-import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.kafka.core.ProducerFactory;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.GenericContainer;
@@ -45,33 +41,40 @@ import org.testcontainers.containers.MongoDBContainer;
 import org.testcontainers.containers.Network;
 import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
+import static com.zhigalko.common.domain.EventType.CREATE_CUSTOMER;
+import static com.zhigalko.common.domain.EventType.CREATE_CUSTOMER_VIEW;
+import static com.zhigalko.common.domain.EventType.DELETE_CUSTOMER_VIEW;
+import static com.zhigalko.common.domain.EventType.UPDATE_CUSTOMER_ADDRESS_VIEW;
+import static com.zhigalko.common.domain.EventType.UPDATE_CUSTOMER_NAME_VIEW;
 import static com.zhigalko.consumer.util.TestDataUtil.getCreateCustomerAvroEvent;
 import static com.zhigalko.consumer.util.TestDataUtil.getCreateCustomerEvent;
 import static com.zhigalko.consumer.util.TestDataUtil.getDeleteCustomerAvroEvent;
 import static com.zhigalko.consumer.util.TestDataUtil.getSnapshot;
 import static com.zhigalko.consumer.util.TestDataUtil.getUpdateCustomerAddressAvroEvent;
 import static com.zhigalko.consumer.util.TestDataUtil.getUpdateCustomerNameAvroEvent;
-import static com.zhigalko.common.domain.EventType.CREATE_CUSTOMER_VIEW;
-import static com.zhigalko.common.domain.EventType.DELETE_CUSTOMER_VIEW;
-import static com.zhigalko.common.domain.EventType.UPDATE_CUSTOMER_ADDRESS_VIEW;
-import static com.zhigalko.common.domain.EventType.UPDATE_CUSTOMER_NAME_VIEW;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.awaitility.Awaitility.await;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.doThrow;
 
-@IT
+@SpringBootTest
+@Testcontainers
+@ActiveProfiles("test")
+@Import(KafkaTestConfig.class)
 public class KafkaListenerIT {
 	private static final Network NETWORK = Network.newNetwork();
 	public static final Duration POLL_INTERVAL = Duration.ofSeconds(3);
-	public static final Duration MAX_DURATION = Duration.ofSeconds(12);
+	public static final Duration MAX_DURATION = Duration.ofSeconds(25);
 
 	@Container
 	public static final KafkaContainer KAFKA_CONTAINER = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:latest"))
 			.withNetwork(NETWORK);
 
 	@Container
-	private static final MongoDBContainer MONGO_DB_CONTAINER = new MongoDBContainer(DockerImageName.parse("mongo:latest"))
+	public static final MongoDBContainer MONGO_DB_CONTAINER = new MongoDBContainer(DockerImageName.parse("mongo:latest"))
 			.withNetwork(NETWORK);
 
 	@Container
@@ -84,13 +87,13 @@ public class KafkaListenerIT {
 				.withEnv("SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS",
 						"PLAINTEXT://" + KAFKA_CONTAINER.getNetworkAliases().get(0) + ":9092")
 					.dependsOn(KAFKA_CONTAINER)
-				.waitingFor(Wait.forHttp("/subjects").forStatusCode(200));
+					.waitingFor(Wait.forHttp("/subjects").forStatusCode(200));
 
 	@DynamicPropertySource
 	private static void registerKafkaAndMongoProperties(DynamicPropertyRegistry registry) {
 		registry.add("spring.kafka.bootstrap-servers", KAFKA_CONTAINER::getBootstrapServers);
 		registry.add("spring.kafka.properties.schema.registry.url",
-				() -> "http://" + SCHEMA_REGISTRY.getHost() + ":" + SCHEMA_REGISTRY.getFirstMappedPort());
+				() -> "http://localhost:" + SCHEMA_REGISTRY.getFirstMappedPort());
 		registry.add("spring.data.mongodb.uri", MONGO_DB_CONTAINER::getReplicaSetUrl);
 	}
 
@@ -108,6 +111,19 @@ public class KafkaListenerIT {
 
 	@Autowired
 	private ConcurrentKafkaListenerContainerFactory<String, Object> containerFactory;
+
+	@SpyBean
+	private EventService eventService;
+
+	@Autowired
+	private ErrorEventRepository errorEventRepository;
+
+	@Test
+	void containersAreRun() {
+		assertThat(KAFKA_CONTAINER.isRunning()).isTrue();
+		assertThat(MONGO_DB_CONTAINER.isRunning()).isTrue();
+		assertThat(SCHEMA_REGISTRY.isRunning()).isTrue();
+	}
 
 	@Test
 	void listenCreateCustomerTopic() {
@@ -146,9 +162,9 @@ public class KafkaListenerIT {
 							fail("event was not received");
 						}
 						StreamSupport.stream(records.spliterator(), false)
-								.filter(record -> CREATE_CUSTOMER_VIEW.getName().contentEquals(record.value().getEventType()))
-								.forEach(record -> {
-									CustomerViewAvroEvent consumedEvent = record.value();
+								.filter(consumerRecord -> CREATE_CUSTOMER_VIEW.getName().contentEquals(consumerRecord.value().getEventType()))
+								.forEach(consumerRecord -> {
+									CustomerViewAvroEvent consumedEvent = consumerRecord.value();
 									assertThat(consumedEvent.getId()).isNotBlank();
 									assertThat(consumedEvent.getEventType().toString()).hasToString(CREATE_CUSTOMER_VIEW.getName());
 									assertThat(consumedEvent.getTimestamp()).isNotBlank();
@@ -197,9 +213,9 @@ public class KafkaListenerIT {
 							fail("event was not received");
 						}
 						StreamSupport.stream(records.spliterator(), false)
-								.filter(record -> UPDATE_CUSTOMER_NAME_VIEW.getName().contentEquals(record.value().getEventType()))
-								.forEach(record -> {
-									CustomerViewAvroEvent consumedEvent = record.value();
+								.filter(consumerRecord -> UPDATE_CUSTOMER_NAME_VIEW.getName().contentEquals(consumerRecord.value().getEventType()))
+								.forEach(consumerRecord -> {
+									CustomerViewAvroEvent consumedEvent = consumerRecord.value();
 									assertThat(consumedEvent.getId()).isNotBlank();
 									assertThat(consumedEvent.getEventType().toString()).hasToString(UPDATE_CUSTOMER_NAME_VIEW.getName());
 									assertThat(consumedEvent.getTimestamp()).isNotBlank();
@@ -247,9 +263,9 @@ public class KafkaListenerIT {
 							fail("event was not received");
 						}
 						StreamSupport.stream(records.spliterator(), false)
-								.filter(record -> UPDATE_CUSTOMER_ADDRESS_VIEW.getName().contentEquals(record.value().getEventType()))
-								.forEach(record -> {
-									CustomerViewAvroEvent consumedEvent = record.value();
+								.filter(consumerRecord -> UPDATE_CUSTOMER_ADDRESS_VIEW.getName().contentEquals(consumerRecord.value().getEventType()))
+								.forEach(consumerRecord -> {
+									CustomerViewAvroEvent consumedEvent = consumerRecord.value();
 									assertThat(consumedEvent.getId()).isNotBlank();
 									assertThat(consumedEvent.getEventType().toString()).hasToString(UPDATE_CUSTOMER_ADDRESS_VIEW.getName());
 									assertThat(consumedEvent.getTimestamp()).isNotBlank();
@@ -292,9 +308,9 @@ public class KafkaListenerIT {
 							fail("event was not received");
 						}
 						StreamSupport.stream(records.spliterator(), false)
-								.filter(record -> DELETE_CUSTOMER_VIEW.getName().contentEquals(record.value().getEventType()))
-								.forEach(record -> {
-									CustomerViewAvroEvent consumedEvent = record.value();
+								.filter(consumerRecord -> DELETE_CUSTOMER_VIEW.getName().contentEquals(consumerRecord.value().getEventType()))
+								.forEach(consumerRecord -> {
+									CustomerViewAvroEvent consumedEvent = consumerRecord.value();
 									assertThat(consumedEvent.getId()).isNotBlank();
 									assertThat(consumedEvent.getEventType().toString()).hasToString(DELETE_CUSTOMER_VIEW.getName());
 									assertThat(consumedEvent.getTimestamp()).isNotBlank();
@@ -305,30 +321,112 @@ public class KafkaListenerIT {
 				});
 	}
 
+	@Test
+	void listenCreateCustomerTopic_retry() {
+		CreateCustomerAvroEvent createCustomerAvroEvent = getCreateCustomerAvroEvent();
+		String createCustomerTopicName = kafkaCustomProperties.getCreateCustomerEventTopic().getName();
+		kafkaProducer.sendMessage(createCustomerAvroEvent, createCustomerTopicName);
+
+		doThrow(new IllegalArgumentException())
+				.doCallRealMethod()
+				.when(eventService).createCustomer(any());
+
+		await()
+				.pollInterval(Duration.ofSeconds(3))
+				.atMost(Duration.ofSeconds(6))
+				.untilAsserted(() -> {
+					Optional<Event> event = eventRepository.findById(createCustomerAvroEvent.getId().toString());
+					assertThat(event).isEmpty();
+					Optional<Snapshot> snapshot = snapshotRepository.findByAggregateId(1L);
+					assertThat(snapshot).isEmpty();
+				});
+
+		await()
+				.pollInterval(POLL_INTERVAL)
+				.atMost(Duration.ofSeconds(30))
+				.untilAsserted(() -> {
+					try (KafkaConsumer<String, CreateCustomerAvroEvent> consumer = new KafkaConsumer<>(containerFactory.getConsumerFactory().getConfigurationProperties())) {
+						String createCustomerRetryTopicName = createCustomerTopicName + "-retry";
+						consumer.subscribe(Collections.singletonList(createCustomerRetryTopicName));
+						ConsumerRecords<String, CreateCustomerAvroEvent> records = consumer.poll(Duration.ofSeconds(10));
+						if (records.isEmpty()) {
+							fail("event was not received");
+						}
+						StreamSupport.stream(records.spliterator(), false)
+								.filter(consumerRecord -> consumerRecord.value().getId().equals(createCustomerAvroEvent.getId()))
+								.forEach(consumerRecord -> {
+									assertThat(consumerRecord.topic()).isEqualTo(createCustomerRetryTopicName);
+									Optional<Event> event = eventRepository.findById(createCustomerAvroEvent.getId().toString());
+									assertThat(event).isNotEmpty();
+									Optional<Snapshot> snapshot = snapshotRepository.findByAggregateId(1L);
+									assertThat(snapshot).isNotEmpty();
+								});
+						consumer.unsubscribe();
+					}
+				});
+	}
+
+	@Test
+	void listenCreateCustomerTopic_retry_dlt() {
+		CreateCustomerAvroEvent createCustomerAvroEvent = getCreateCustomerAvroEvent();
+		String createCustomerTopicName = kafkaCustomProperties.getCreateCustomerEventTopic().getName();
+		kafkaProducer.sendMessage(createCustomerAvroEvent, createCustomerTopicName);
+
+		doThrow(new IllegalArgumentException()).when(eventService).createCustomer(any());
+
+		await()
+				.pollInterval(Duration.ofSeconds(3))
+				.atMost(Duration.ofSeconds(6))
+				.untilAsserted(() -> {
+					Optional<Event> event = eventRepository.findById(createCustomerAvroEvent.getId().toString());
+					assertThat(event).isEmpty();
+					Optional<Snapshot> snapshot = snapshotRepository.findByAggregateId(1L);
+					assertThat(snapshot).isEmpty();
+				});
+
+		await()
+				.pollInterval(POLL_INTERVAL)
+				.atMost(Duration.ofSeconds(30))
+				.untilAsserted(() -> {
+					try (KafkaConsumer<String, CreateCustomerAvroEvent> consumer = new KafkaConsumer<>(containerFactory.getConsumerFactory().getConfigurationProperties())) {
+						String createCustomerRetryTopicName = createCustomerTopicName + "-retry";
+						consumer.subscribe(Collections.singletonList(createCustomerRetryTopicName));
+						ConsumerRecords<String, CreateCustomerAvroEvent> records = consumer.poll(Duration.ofSeconds(10));
+						assertThat(records.records(createCustomerRetryTopicName)).hasSize(1);
+						Optional<Event> event = eventRepository.findById(createCustomerAvroEvent.getId().toString());
+						assertThat(event).isEmpty();
+						Optional<Snapshot> snapshot = snapshotRepository.findByAggregateId(1L);
+						assertThat(snapshot).isEmpty();
+					}
+				});
+
+		await()
+				.pollInterval(POLL_INTERVAL)
+				.atMost(Duration.ofSeconds(60))
+				.untilAsserted(() -> {
+					try (KafkaConsumer<String, CreateCustomerAvroEvent> consumer = new KafkaConsumer<>(containerFactory.getConsumerFactory().getConfigurationProperties())) {
+						String createCustomerDltTopicName = createCustomerTopicName + "-dlt";
+						consumer.subscribe(Collections.singletonList(createCustomerDltTopicName));
+						ConsumerRecords<String, CreateCustomerAvroEvent> records = consumer.poll(Duration.ofSeconds(5));
+						StreamSupport.stream(records.spliterator(), false)
+								.filter(consumerRecord -> CREATE_CUSTOMER.getName().contentEquals(consumerRecord.value().getEventType()))
+								.forEach(consumerRecord -> {
+									assertThat(consumerRecord.topic()).isEqualTo(createCustomerDltTopicName);
+									Optional<ErrorEvent> optionalErrorEvent = errorEventRepository.findById(createCustomerAvroEvent.getId().toString());
+									assertThat(optionalErrorEvent).isNotEmpty();
+									ErrorEvent errorEvent = optionalErrorEvent.get();
+									assertThat(errorEvent.getId()).isEqualTo(createCustomerAvroEvent.getId());
+									assertThat(errorEvent.getEventType()).isEqualTo(createCustomerAvroEvent.getEventType());
+									assertThat(errorEvent.getTimestamp()).isNotNull();
+								});
+						consumer.unsubscribe();
+					}
+				});
+	}
+
 	@AfterEach
 	void tearDown() {
 		eventRepository.deleteAll();
 		snapshotRepository.deleteAll();
-	}
-
-	@TestConfiguration
-	@RequiredArgsConstructor
-	@Import({KafkaProducerConfig.class})
-	static class Config {
-		private final ConcurrentKafkaListenerContainerFactory<String, Object> containerFactory;
-		private final KafkaTemplate<String, Object> kafkaTemplate;
-
-		@PostConstruct
-		void initialize() {
-			String schemaRegistryUrl = "http://" + SCHEMA_REGISTRY.getHost() + ":" + SCHEMA_REGISTRY.getFirstMappedPort();
-			ProducerFactory<String, Object> producerFactory = kafkaTemplate.getProducerFactory();
-			final Map<String, Object> producerProps = new HashMap<>();
-			producerProps.put(KafkaAvroSerializerConfig.SCHEMA_REGISTRY_URL_CONFIG, schemaRegistryUrl);
-			producerFactory.updateConfigs(producerProps);
-			ConsumerFactory<? super String, ? super Object> consumerFactory = containerFactory.getConsumerFactory();
-			final Map<String, Object> consumerProps = new HashMap<>();
-			consumerProps.put(KafkaAvroSerializerConfig.SCHEMA_REGISTRY_URL_CONFIG, schemaRegistryUrl);
-			consumerFactory.updateConfigs(consumerProps);
-		}
 	}
 }
