@@ -14,7 +14,6 @@ import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import static com.zhigalko.common.domain.EventType.CREATE_CUSTOMER;
-import static com.zhigalko.common.domain.EventType.CREATE_CUSTOMER_VIEW;
 import static com.zhigalko.common.domain.EventType.DELETE_CUSTOMER_VIEW;
 import static com.zhigalko.common.domain.EventType.UPDATE_CUSTOMER_ADDRESS;
 import static com.zhigalko.common.domain.EventType.UPDATE_CUSTOMER_ADDRESS_VIEW;
