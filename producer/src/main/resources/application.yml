@@ -84,3 +84,9 @@ redis:
 
 logging:
   config: classpath:logback.xml
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics

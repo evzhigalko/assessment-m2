@@ -6,7 +6,7 @@
     <artifactId>common</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>common</name>
-    <description>common</description>
+    <description>Module with common classes</description>
 
     <parent>
         <groupId>com.zhigalko</groupId>
@@ -16,6 +16,11 @@
 
     <properties>
         <java.version>17</java.version>
+        <kafka.avro.version>7.7.0</kafka.avro.version>
+        <avro.version>1.12.0</avro.version>
+        <gson.version>2.11.0</gson.version>
+        <mapstruct.version>1.6.0</mapstruct.version>
+        <lombok.binding.version>0.2.0</lombok.binding.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
     </properties>
@@ -51,17 +56,17 @@
         <dependency>
             <groupId>io.confluent</groupId>
             <artifactId>kafka-avro-serializer</artifactId>
-            <version>7.7.0</version>
+            <version>${kafka.avro.version}</version>
         </dependency>
         <dependency>
             <groupId>io.confluent</groupId>
             <artifactId>kafka-schema-registry-client</artifactId>
-            <version>7.7.0</version>
+            <version>${kafka.avro.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.avro</groupId>
             <artifactId>avro</artifactId>
-            <version>1.12.0</version>
+            <version>${avro.version}</version>
         </dependency>
         <dependency>
             <groupId>org.testcontainers</groupId>
@@ -89,7 +94,7 @@
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>2.11.0</version>
+            <version>${gson.version}</version>
         </dependency>
     </dependencies>
     <repositories>
@@ -110,7 +115,7 @@
                         <path>
                             <groupId>org.mapstruct</groupId>
                             <artifactId>mapstruct-processor</artifactId>
-                            <version>1.6.0</version>
+                            <version>${mapstruct.version}</version>
                         </path>
                         <path>
                             <groupId>org.projectlombok</groupId>
@@ -120,7 +125,7 @@
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok-mapstruct-binding</artifactId>
-                            <version>0.2.0</version>
+                            <version>${lombok.binding.version}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
@@ -128,7 +133,7 @@
             <plugin>
                 <groupId>org.apache.avro</groupId>
                 <artifactId>avro-maven-plugin</artifactId>
-                <version>1.12.0</version>
+                <version>${avro.version}</version>
                 <executions>
                     <execution>
                         <id>schemas</id>
