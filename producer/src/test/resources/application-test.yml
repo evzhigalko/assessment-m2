@@ -3,3 +3,6 @@ spring:
     consumer:
       group-id: test-consumer
     bootstrap-servers: http://localhost:9092
+
+logging:
+  config: classpath:logback.xml

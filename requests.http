@@ -34,3 +34,9 @@ Content-Type: application/json-patch+json
 ### Delete a customer by ID
 DELETE http://localhost:9001/api/v1/customers/60
 Content-Type: application/json-patch+json
+
+### Actuator producer
+GET localhost:9001/actuator/health
+
+### Actuator consumer
+GET localhost:9002/actuator/health
