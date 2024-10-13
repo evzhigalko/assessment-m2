@@ -2,7 +2,7 @@ package com.zhigalko.producer.integration.repository;
 
 import com.zhigalko.common.domain.model.Customer;
 import com.zhigalko.common.projection.CustomerProjection;
-import com.zhigalko.producer.integration.BaseIntegrationTest;
+import com.zhigalko.producer.integration.DatabaseIntegrationTest;
 import com.zhigalko.producer.repository.CustomerRepository;
 import java.util.Optional;
 import org.junit.jupiter.api.AfterEach;
@@ -16,7 +16,7 @@ import org.testcontainers.utility.DockerImageName;
 import static com.zhigalko.producer.util.TestDataUtil.getCustomer;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class CustomerRepositoryIT extends BaseIntegrationTest {
+class CustomerRepositoryIT extends DatabaseIntegrationTest {
 
 	@Container
 	private static final MongoDBContainer MONGO_DB_CONTAINER = new MongoDBContainer(DockerImageName.parse("mongo:latest"));

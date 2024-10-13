@@ -1,7 +1,6 @@
 package com.zhigalko.common.config;
 
 import java.util.Map;
-import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +10,6 @@ import org.springframework.kafka.core.KafkaTemplate;
 
 @Configuration
 @EnableKafka
-@RequiredArgsConstructor
 public class KafkaProducerConfig {
 
 	@Bean

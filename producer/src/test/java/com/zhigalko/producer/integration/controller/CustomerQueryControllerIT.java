@@ -5,7 +5,7 @@ import com.zhigalko.common.domain.model.Customer;
 import com.zhigalko.common.projection.CustomerProjection;
 import com.zhigalko.common.query.GetCustomerById;
 import com.zhigalko.common.util.Util;
-import com.zhigalko.producer.integration.BaseIntegrationTest;
+import com.zhigalko.producer.integration.DatabaseIntegrationTest;
 import com.zhigalko.producer.service.CacheService;
 import com.zhigalko.producer.service.CustomerQueryService;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,16 +27,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @AutoConfigureMockMvc
-class CustomerQueryControllerIT extends BaseIntegrationTest {
+class CustomerQueryControllerIT extends DatabaseIntegrationTest {
 	private static final String GET_QUERY_URI = "/api/v1/customers/";
 
 	@Container
-	private static final MongoDBContainer MONGO_DB_CONTAINER = new MongoDBContainer(DockerImageName.parse("mongo:latest"))
-			.withNetwork(NETWORK);
+	private static final MongoDBContainer MONGO_DB_CONTAINER = new MongoDBContainer(DockerImageName.parse("mongo:latest"));
 
 	@Container
-	public static final RedisContainer REDIS_CONTAINER = new RedisContainer(DockerImageName.parse("redis:latest"))
-			.withNetwork(NETWORK);
+	public static final RedisContainer REDIS_CONTAINER = new RedisContainer(DockerImageName.parse("redis:latest"));
 
 	@Autowired
 	private MockMvc mockMvc;

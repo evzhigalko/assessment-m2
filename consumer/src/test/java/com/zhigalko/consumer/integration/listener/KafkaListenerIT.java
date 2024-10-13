@@ -14,6 +14,7 @@ import com.zhigalko.common.schema.UpdateCustomerAddressAvroEvent;
 import com.zhigalko.common.schema.UpdateCustomerNameAvroEvent;
 import com.zhigalko.common.service.KafkaProducer;
 import com.zhigalko.common.util.KafkaCustomProperties;
+import com.zhigalko.consumer.integration.BaseIntegrationTest;
 import com.zhigalko.consumer.integration.listener.config.KafkaTestConfig;
 import com.zhigalko.consumer.repository.ErrorEventRepository;
 import com.zhigalko.consumer.repository.EventRepository;
@@ -28,11 +29,9 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.GenericContainer;
@@ -41,7 +40,6 @@ import org.testcontainers.containers.MongoDBContainer;
 import org.testcontainers.containers.Network;
 import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 import static com.zhigalko.common.domain.EventType.CREATE_CUSTOMER;
 import static com.zhigalko.common.domain.EventType.CREATE_CUSTOMER_VIEW;
@@ -60,11 +58,8 @@ import static org.awaitility.Awaitility.await;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.doThrow;
 
-@SpringBootTest
-@Testcontainers
-@ActiveProfiles("test")
 @Import(KafkaTestConfig.class)
-public class KafkaListenerIT {
+public class KafkaListenerIT extends BaseIntegrationTest {
 	public static final Duration POLL_INTERVAL = Duration.ofSeconds(3);
 	public static final Duration MAX_DURATION = Duration.ofSeconds(25);
 	private static final Network NETWORK = Network.newNetwork();

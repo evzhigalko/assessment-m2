@@ -3,7 +3,7 @@ package com.zhigalko.producer.integration.service;
 import com.redis.testcontainers.RedisContainer;
 import com.zhigalko.common.projection.CustomerProjection;
 import com.zhigalko.producer.config.RedisConfig;
-import com.zhigalko.producer.integration.BaseIntegrationTest;
+import com.zhigalko.producer.integration.DatabaseIntegrationTest;
 import com.zhigalko.producer.service.CacheService;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
@@ -22,7 +22,7 @@ import static com.zhigalko.producer.constants.CommonConstant.CACHE_KEY;
 import static com.zhigalko.producer.util.TestDataUtil.getProjection;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CacheServiceIT extends BaseIntegrationTest {
+public class CacheServiceIT extends DatabaseIntegrationTest {
 
 	@Container
 	public static final RedisContainer REDIS_CONTAINER = new RedisContainer(DockerImageName.parse("redis:latest"));
