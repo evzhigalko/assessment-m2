@@ -7,8 +7,8 @@ spring:
   data:
     mongodb:
       database: events
-      uri: mongodb://admin:password@localhost:27017/admin?authSource=admin
-      authentication-database: admin
+      uri: mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@localhost:27017/${MONGO_USERNAME}
+      authentication-database: ${MONGO_USERNAME}
   kafka:
     bootstrap-servers: http://localhost:19092,http://localhost:29092
     listener:

@@ -7,8 +7,8 @@ spring:
   data:
     mongodb:
       database: customers
-      uri: mongodb://admin:password@localhost:27017/admin?authSource=admin
-      authentication-database: admin
+      uri: mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@localhost:27017/${MONGO_USERNAME}
+      authentication-database: ${MONGO_USERNAME}
     redis:
       host: localhost
       port: 6379
