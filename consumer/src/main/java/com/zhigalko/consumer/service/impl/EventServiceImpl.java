@@ -73,9 +73,7 @@ public class EventServiceImpl implements EventService {
 		Snapshot snapshot = snapshotService.getSnapshotByAggregateId(event.getAggregateId());
 		snapshot.getPayload().setName(event.getPayload().getName());
 		snapshot.setTimestamp(Instant.now());
-		long version = snapshot.getVersion();
-		version++;
-		snapshot.setVersion(version);
+		snapshot.setVersion(updateVersion(snapshot));
 		saveSnapshot(snapshot);
 		sendUpdateCustomerEvent(snapshot, UPDATE_CUSTOMER_NAME_VIEW.getName());
 	}
@@ -88,9 +86,7 @@ public class EventServiceImpl implements EventService {
 		Snapshot snapshot = snapshotService.getSnapshotByAggregateId(event.getAggregateId());
 		snapshot.getPayload().setAddress(event.getPayload().getAddress());
 		snapshot.setTimestamp(Instant.now());
-		long version = snapshot.getVersion();
-		version++;
-		snapshot.setVersion(version);
+		snapshot.setVersion(updateVersion(snapshot));
 		saveSnapshot(snapshot);
 		sendUpdateCustomerEvent(snapshot, UPDATE_CUSTOMER_ADDRESS_VIEW.getName());
 	}
@@ -140,5 +136,11 @@ public class EventServiceImpl implements EventService {
 
 		kafkaProducer.sendMessage(event,
 				kafkaCustomProperties.getCustomerViewEventTopic().getName());
+	}
+
+	private long updateVersion(Snapshot snapshot) {
+		long version = snapshot.getVersion();
+		version++;
+		return version;
 	}
 }
