@@ -19,7 +19,6 @@ spring:
       key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
       properties:
-        allow.auto.create.topics: false
         spring:
           deserializer:
             key:
@@ -44,6 +43,10 @@ spring:
         schema:
           registry:
             url: http://localhost:8081
+    admin:
+      auto-create: false
+    properties:
+      auto.create.topics.enable: false
   jpa:
     open-in-view: false
 kafka:

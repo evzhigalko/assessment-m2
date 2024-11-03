@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 public class KafkaConsumer {
 	private final CustomerProjector customerProjector;
 
-	@RetryableTopic(attempts = "2",	backoff = @Backoff(delay = 3000))
+	@RetryableTopic(attempts = "2",	backoff = @Backoff(delay = 3000), autoCreateTopics = "false")
 	@KafkaListener(topics = "${kafka.topics.customer-view-event.name}", containerFactory = "kafkaListenerContainerFactory", groupId = "${spring.kafka.consumer.group-id}")
 	public void listenCustomerViewTopic(ConsumerRecord<String, CustomerViewAvroEvent> consumerRecord, Acknowledgment acknowledgment) {
 		log.info("Received event: {}", consumerRecord.toString());

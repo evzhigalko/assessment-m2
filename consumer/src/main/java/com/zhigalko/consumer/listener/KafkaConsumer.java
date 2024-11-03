@@ -27,7 +27,7 @@ public class KafkaConsumer {
 	private final EventService eventService;
 	private final ErrorEventService errorEventService;
 
-	@RetryableTopic(attempts = "2",	backoff = @Backoff(delay = 3000))
+	@RetryableTopic(attempts = "2",	backoff = @Backoff(delay = 3000), autoCreateTopics = "false")
 	@KafkaListener(topics = "${kafka.topics.create-customer-event.name}", containerFactory = "kafkaListenerContainerFactory", groupId = "${spring.kafka.consumer.group-id}")
 	public void listenCreateCustomerTopic(ConsumerRecord<String, CreateCustomerAvroEvent> consumerRecord,
 	                                      @Header(KafkaHeaders.RECEIVED_TOPIC) String topic,
@@ -37,7 +37,7 @@ public class KafkaConsumer {
 		acknowledgment.acknowledge();
 	}
 
-	@RetryableTopic(attempts = "2",	backoff = @Backoff(delay = 3000))
+	@RetryableTopic(attempts = "2",	backoff = @Backoff(delay = 3000), autoCreateTopics = "false")
 	@KafkaListener(topics = "${kafka.topics.update-customer-name-event.name}", containerFactory = "kafkaListenerContainerFactory", groupId = "${spring.kafka.consumer.group-id}")
 	public void listenUpdateCustomerNameTopic(ConsumerRecord<String, UpdateCustomerNameAvroEvent> consumerRecord,
 	                                          @Header(KafkaHeaders.RECEIVED_TOPIC) String topic,
@@ -47,7 +47,7 @@ public class KafkaConsumer {
 		acknowledgment.acknowledge();
 	}
 
-	@RetryableTopic(attempts = "2",	backoff = @Backoff(delay = 3000))
+	@RetryableTopic(attempts = "2",	backoff = @Backoff(delay = 3000), autoCreateTopics = "false")
 	@KafkaListener(topics = "${kafka.topics.update-customer-address-event.name}", containerFactory = "kafkaListenerContainerFactory", groupId = "${spring.kafka.consumer.group-id}")
 	public void listenUpdateCustomerAddressTopic(ConsumerRecord<String, UpdateCustomerAddressAvroEvent> consumerRecord,
 	                                             @Header(KafkaHeaders.RECEIVED_TOPIC) String topic,
@@ -57,7 +57,7 @@ public class KafkaConsumer {
 		acknowledgment.acknowledge();
 	}
 
-	@RetryableTopic(attempts = "2",	backoff = @Backoff(delay = 3000))
+	@RetryableTopic(attempts = "2",	backoff = @Backoff(delay = 3000), autoCreateTopics = "false")
 	@KafkaListener(topics = "${kafka.topics.delete-customer-event.name}", containerFactory = "kafkaListenerContainerFactory", groupId = "${spring.kafka.consumer.group-id}")
 	public void listenDeleteCustomerTopic(ConsumerRecord<String, DeleteCustomerAvroEvent> consumerRecord,
 	                                      @Header(KafkaHeaders.RECEIVED_TOPIC) String topic,

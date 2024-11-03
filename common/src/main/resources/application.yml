@@ -11,7 +11,6 @@ spring:
       keyDeserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
       valueDeserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
       properties:
-        allow.auto.create.topics: false
         spring:
           deserializer:
             key:
@@ -38,6 +37,10 @@ spring:
             url: http://localhost:8081
     listener:
       ack-mode: MANUAL_IMMEDIATE
+    admin:
+      auto-create: false
+    properties:
+      auto.create.topics.enable: false
 kafka:
   topics:
     create-customer-event:
