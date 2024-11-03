@@ -50,7 +50,6 @@ public class EventServiceImpl implements EventService {
 		long generatedCustomerId = sequenceGenerator.generateSequence(Event.SEQUENCE_NAME);
 		event.setAggregateId(generatedCustomerId);
 		save(event);
-		log.info(EVENT_SAVED_LOG_MESSAGE, event.getClass(), event);
 		Snapshot snapshot = snapshotService.createSnapshot(event);
 		log.info("Snapshot was created for id: {}", snapshot.getAggregateId());
 		CustomerViewAvroEvent customerViewAvroEvent = new CustomerViewAvroEvent(
@@ -71,7 +70,6 @@ public class EventServiceImpl implements EventService {
 	public void updateCustomerName(UpdateCustomerNameAvroEvent updateCustomerNameAvroEvent) {
 		UpdateCustomerNameEvent event = eventMapper.toUpdateCustomerNameEvent(updateCustomerNameAvroEvent);
 		save(event);
-		log.info(EVENT_SAVED_LOG_MESSAGE, event.getClass(), event);
 		Snapshot snapshot = snapshotService.getSnapshotByAggregateId(event.getAggregateId());
 		snapshot.getPayload().setName(event.getPayload().getName());
 		snapshot.setTimestamp(Instant.now());
@@ -79,7 +77,6 @@ public class EventServiceImpl implements EventService {
 		version++;
 		snapshot.setVersion(version);
 		saveSnapshot(snapshot);
-		log.info(SNAPSHOT_UPDATED_LOG_MESSAGE, snapshot.getAggregateId(), version, snapshot.getPayload().getName());
 		sendUpdateCustomerEvent(snapshot, UPDATE_CUSTOMER_NAME_VIEW.getName());
 	}
 
@@ -88,7 +85,6 @@ public class EventServiceImpl implements EventService {
 	public void updateCustomerAddress(UpdateCustomerAddressAvroEvent updateCustomerAddressAvroEvent) {
 		UpdateCustomerAddressEvent event = eventMapper.toUpdateCustomerAddressEvent(updateCustomerAddressAvroEvent);
 		save(event);
-		log.info(EVENT_SAVED_LOG_MESSAGE, event.getClass(), event);
 		Snapshot snapshot = snapshotService.getSnapshotByAggregateId(event.getAggregateId());
 		snapshot.getPayload().setAddress(event.getPayload().getAddress());
 		snapshot.setTimestamp(Instant.now());
@@ -96,7 +92,6 @@ public class EventServiceImpl implements EventService {
 		version++;
 		snapshot.setVersion(version);
 		saveSnapshot(snapshot);
-		log.info(SNAPSHOT_UPDATED_LOG_MESSAGE, snapshot.getAggregateId(), version, snapshot.getPayload().getAddress());
 		sendUpdateCustomerEvent(snapshot, UPDATE_CUSTOMER_ADDRESS_VIEW.getName());
 	}
 
@@ -105,7 +100,6 @@ public class EventServiceImpl implements EventService {
 	public void deleteCustomer(DeleteCustomerAvroEvent deleteCustomerEvent) {
 		DeleteCustomerEvent event = eventMapper.toDeleteCustomerEvent(deleteCustomerEvent);
 		save(event);
-		log.info(EVENT_SAVED_LOG_MESSAGE, event.getClass(), event);
 		snapshotService.deleteByAggregateId(deleteCustomerEvent.getAggregateId());
 		log.info("Snapshot was deleted for id: {}", event.getAggregateId());
 		CustomerViewAvroEvent customerViewAvroEvent = new CustomerViewAvroEvent(
@@ -123,10 +117,15 @@ public class EventServiceImpl implements EventService {
 
 	private void save(Event event) {
 		eventRepository.save(event);
+		log.info(EVENT_SAVED_LOG_MESSAGE, event.getClass(), event);
 	}
 
 	private void saveSnapshot(Snapshot snapshot) {
 		snapshotService.save(snapshot);
+		log.info(SNAPSHOT_UPDATED_LOG_MESSAGE,
+				snapshot.getAggregateId(),
+				snapshot.getVersion(),
+				snapshot.getPayload().getName());
 	}
 
 	private void sendUpdateCustomerEvent(Snapshot snapshot, String eventType) {
