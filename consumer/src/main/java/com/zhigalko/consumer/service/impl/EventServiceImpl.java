@@ -34,8 +34,8 @@ import static java.util.UUID.randomUUID;
 @Component
 @RequiredArgsConstructor
 public class EventServiceImpl implements EventService {
-	public static final String EVENT_SAVED_LOG_MESSAGE = "Event was saved: class: {}, payload: {}";
-	public static final String SNAPSHOT_UPDATED_LOG_MESSAGE = "Snapshot was updated for id: {}, version: {}, changed: {}";
+	private static final String EVENT_SAVED_LOG_MESSAGE = "Event was saved: class: {}, payload: {}";
+	private static final String SNAPSHOT_UPDATED_LOG_MESSAGE = "Snapshot was updated for id: {}, version: {}, changed: {}";
 	private final EventRepository eventRepository;
 	private final SequenceGenerator sequenceGenerator;
 	private final KafkaProducer kafkaProducer;
